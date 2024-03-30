@@ -1,0 +1,151 @@
+@import "../../assets/css/variables.scss";
+@import "../../assets/css/mixins.scss";
+
+.color-picker {
+    display: flex;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.3rem;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 9;
+
+    @include whenDark {
+        border: 1px solid $dark-border-color;
+        background-color: $background-color-dark-light;
+        color: white;
+    }
+
+    .left-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        .color-div {
+            width: 20px;
+            height: 20px;
+            border-radius: 0.3rem;
+        }
+
+        p {
+            font-family: Inter;
+            font-size: 0.75rem;
+        }
+    }
+
+}
+
+.gradient-select-box {
+    height: 10px;
+    width: 60px;
+    overflow: hidden;
+}
+
+.gradient-options {
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gradient-color-container {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+
+    .gradient {
+        width: 35px;
+        height: 35px;
+        background-color: aliceblue;
+        border-radius: 0.4rem;
+        position: relative;
+        border: 1px solid $border-color;
+
+        .gradient-close {
+            position: absolute;
+            right: 0;
+            top: -6px;
+            background-color: $primary-color;
+            border-radius: 13.5rem;
+            height: 16px;
+            width: 16px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            svg {
+                width: 0.65rem;
+                height: 0.65rem;
+            }
+        }
+    }
+}
+
+.color-picker-modal {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    width: 250px;
+    max-height: 450px;
+    background-color: $background-color-white;
+    border: 1px solid $border-color;
+    position: absolute;
+    top: 33.5%;
+    border-radius: 0.8rem;
+    right: 15%;
+    z-index: 9;
+
+    @include whenDark {
+        border: 1px solid $dark-border-color;
+        background-color: $background-color-dark;
+        color: white;
+    }
+
+    // overflow-y: auto;
+    // overflow-x: hidden;
+}
+
+.scroll-container {
+    height: 200px;
+    overflow-y: auto;
+}
+
+.recommended-colors-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .color-div {
+        height: 17px;
+        width: 17px;
+        border-radius: 0.2rem;
+        border: 1px solid $border-color;
+        cursor: pointer;
+
+        @include whenDark {
+            border: 1px solid $dark-border-color;
+        }
+    }
+}
+
+.wheel-container {
+    display: flex;
+
+    .right-partner {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin: 0rem 0rem 0rem 1rem;
+    }
+}
+
+
+.inner-container-model {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    padding: 0.7rem 1rem;
+}

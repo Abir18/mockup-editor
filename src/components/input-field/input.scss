@@ -1,0 +1,46 @@
+@import "../../assets/css/variables.scss";
+@import "../../assets/css/mixins.scss";
+
+.input-field-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .icon-pending {
+        padding-left: 2rem;
+    }
+}
+
+.input-icon {
+    background-color: transparent;
+    border-right: 2px solid $border-color;
+    position: absolute;
+    left: 7px;
+}
+
+.input-field {
+    border: 1px solid $border-color;
+    border-radius: 0.3rem;
+    padding: 0.35rem 0.75rem;
+    font-size: .75rem;
+    line-height: 1rem;
+    border-width: 1px;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: linear;
+    transition-duration: .3s;
+    appearance: none;
+    outline: none;
+    background-color: $background-color;
+    resize: none;
+
+    @include whenDark {
+        border: 1px solid $dark-border-color;
+        background-color: $background-color-dark-light;
+        color:white;
+    }
+}
+
+.input-field:focus {
+    border-color: $primary-color;
+    background-color: $primary-color-light;
+}

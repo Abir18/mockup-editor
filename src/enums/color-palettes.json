@@ -1,0 +1,702 @@
+[
+    {
+        "title": "Organic",
+        "description": "Natural Colors",
+        "colors": [
+            {
+                "colour_hex": "#9ca756",
+                "colour_rgb": "rgb(156,167,86)"
+            },
+            {
+                "colour_hex": "#ced890",
+                "colour_rgb": "rgb(206,216,144)"
+            },
+            {
+                "colour_hex": "#a36e63",
+                "colour_rgb": "rgb(163,110,99)"
+            },
+            {
+                "colour_hex": "#714d45",
+                "colour_rgb": "rgb(113,77,69)"
+            },
+            {
+                "colour_hex": "#716158",
+                "colour_rgb": "rgb(113,97,88)"
+            },
+            {
+                "colour_hex": "#d9c8b6",
+                "colour_rgb": "rgb(217,200,182)"
+            },
+            {
+                "colour_hex": "#adaa7f",
+                "colour_rgb": "rgb(173,170,127)"
+            },
+            {
+                "colour_hex": "#8b5247",
+                "colour_rgb": "rgb(139,82,71)"
+            },
+            {
+                "colour_hex": "#A43452",
+                "colour_rgb": "rgb(164,52,82)"
+            },
+            {
+                "colour_hex": "#be8f20",
+                "colour_rgb": "rgb(190,143,32)"
+            },
+            {
+                "colour_hex": "#574839",
+                "colour_rgb": "rgb(87,72,57)"
+            },
+            {
+                "colour_hex": "#87a695",
+                "colour_rgb": "rgb(135,166,149)"
+            },
+            {
+                "colour_hex": "#be796b",
+                "colour_rgb": "rgb(190,121,107)"
+            },
+            {
+                "colour_hex": "#d8b79c",
+                "colour_rgb": "rgb(216,183,156)"
+            },
+            {
+                "colour_hex": "#374a6c",
+                "colour_rgb": "rgb(55,74,108)"
+            },
+            {
+                "colour_hex": "#172134",
+                "colour_rgb": "rgb(23,33,52)"
+            }
+        ]
+    },
+    {
+        "title": "Monocromatic",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#ff007a",
+                "colour_rgb": "rgb(255,0,122)"
+            },
+            {
+                "colour_hex": "#d10064",
+                "colour_rgb": "rgb(209,0,100)"
+            },
+            {
+                "colour_hex": "#860d47",
+                "colour_rgb": "rgb(134,13,71)"
+            },
+            {
+                "colour_hex": "#450725",
+                "colour_rgb": "rgb(69,7,37)"
+            },
+            {
+                "colour_hex": "#43bbff",
+                "colour_rgb": "rgb(67,187,255)"
+            },
+            {
+                "colour_hex": "#1686c3",
+                "colour_rgb": "rgb(22,134,195)"
+            },
+            {
+                "colour_hex": "#0c608e",
+                "colour_rgb": "rgb(12,96,142)"
+            },
+            {
+                "colour_hex": "#04334e",
+                "colour_rgb": "rgb(4,51,78)"
+            },
+            {
+                "colour_hex": "#8568f6",
+                "colour_rgb": "rgb(133,104,246)"
+            },
+            {
+                "colour_hex": "#532cbe",
+                "colour_rgb": "rgb(83,44,190)"
+            },
+            {
+                "colour_hex": "#35168a",
+                "colour_rgb": "rgb(53,22,138)"
+            },
+            {
+                "colour_hex": "#1b0a4b",
+                "colour_rgb": "rgb(27,10,75)"
+            },
+            {
+                "colour_hex": "#ffd600",
+                "colour_rgb": "rgb(255,214,0)"
+            },
+            {
+                "colour_hex": "#ba9e0f",
+                "colour_rgb": "rgb(186,158,15)"
+            },
+            {
+                "colour_hex": "#705f08",
+                "colour_rgb": "rgb(112,95,8)"
+            },
+            {
+                "colour_hex": "#302905",
+                "colour_rgb": "rgb(48,41,5)"
+            }
+        ]
+    },
+    {
+        "title": "Pastel",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#d9bdae",
+                "colour_rgb": "rgb(217,189,174)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#a9d3eb",
+                "colour_rgb": "rgb(169,211,235)"
+            },
+            {
+                "colour_hex": "#7abed8",
+                "colour_rgb": "rgb(122,190,216)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#d9bdae",
+                "colour_rgb": "rgb(217,189,174)"
+            },
+            {
+                "colour_hex": "#d89f81",
+                "colour_rgb": "rgb(216,159,129)"
+            },
+            {
+                "colour_hex": "#bb8d7e",
+                "colour_rgb": "rgb(187,141,126)"
+            },
+            {
+                "colour_hex": "#f3d2d1",
+                "colour_rgb": "rgb(243,210,209)"
+            },
+            {
+                "colour_hex": "#f4e9e4",
+                "colour_rgb": "rgb(244,233,228)"
+            },
+            {
+                "colour_hex": "#afccef",
+                "colour_rgb": "rgb(175,204,239)"
+            },
+            {
+                "colour_hex": "#88b3e4",
+                "colour_rgb": "rgb(136,179,228)"
+            },
+            {
+                "colour_hex": "#f2f0d0",
+                "colour_rgb": "rgb(242,240,208)"
+            },
+            {
+                "colour_hex": "#d7d39f",
+                "colour_rgb": "rgb(215,211,159)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#ffffff",
+                "colour_rgb": "rgb(255,255,255)"
+            }
+        ]
+    },
+    {
+        "title": "Pop",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#30d6ae",
+                "colour_rgb": "rgb(48,214,174)"
+            },
+            {
+                "colour_hex": "#2b218a",
+                "colour_rgb": "rgb(43,33,138)"
+            },
+            {
+                "colour_hex": "#396aef",
+                "colour_rgb": "rgb(57,106,239)"
+            },
+            {
+                "colour_hex": "#f02f74",
+                "colour_rgb": "rgb(240,47,116)"
+            },
+            {
+                "colour_hex": "#4073ff",
+                "colour_rgb": "rgb(64,115,255)"
+            },
+            {
+                "colour_hex": "#ffcfc6",
+                "colour_rgb": "rgb(255,207,198)"
+            },
+            {
+                "colour_hex": "#ff756a",
+                "colour_rgb": "rgb(255,117,106)"
+            },
+            {
+                "colour_hex": "#f2f2f2",
+                "colour_rgb": "rgb(242,242,242)"
+            },
+            {
+                "colour_hex": "#f03b3f",
+                "colour_rgb": "rgb(240,59,63)"
+            },
+            {
+                "colour_hex": "#ffbe00",
+                "colour_rgb": "rgb(255,190,0)"
+            },
+            {
+                "colour_hex": "#00c29f",
+                "colour_rgb": "rgb(0,194,159)"
+            },
+            {
+                "colour_hex": "#242c58",
+                "colour_rgb": "rgb(36,44,88)"
+            },
+            {
+                "colour_hex": "#fdc52e",
+                "colour_rgb": "rgb(253,197,46)"
+            },
+            {
+                "colour_hex": "#5e59e3",
+                "colour_rgb": "rgb(94,89,227)"
+            },
+            {
+                "colour_hex": "#fa5779",
+                "colour_rgb": "rgb(250,87,121)"
+            },
+            {
+                "colour_hex": "#1eb5d4",
+                "colour_rgb": "rgb(30,181,212)"
+            }
+        ]
+    },
+    {
+        "title": "Retro",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#f0748a",
+                "colour_rgb": "rgb(240,116,138)"
+            },
+            {
+                "colour_hex": "#0d47bc",
+                "colour_rgb": "rgb(13,71,188)"
+            },
+            {
+                "colour_hex": "#133d72",
+                "colour_rgb": "rgb(19,61,114)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#f04885",
+                "colour_rgb": "rgb(240,72,133)"
+            },
+            {
+                "colour_hex": "#583372",
+                "colour_rgb": "rgb(88,51,114)"
+            },
+            {
+                "colour_hex": "#46a6a6",
+                "colour_rgb": "rgb(70,166,166)"
+            },
+            {
+                "colour_hex": "#f2dfbd",
+                "colour_rgb": "rgb(242,223,189)"
+            },
+            {
+                "colour_hex": "#ebe6c0",
+                "colour_rgb": "rgb(235,230,192)"
+            },
+            {
+                "colour_hex": "#fc3b1f",
+                "colour_rgb": "rgb(252,59,31)"
+            },
+            {
+                "colour_hex": "#09408a",
+                "colour_rgb": "rgb(9,64,138)"
+            },
+            {
+                "colour_hex": "#041423",
+                "colour_rgb": "rgb(4,20,35)"
+            },
+            {
+                "colour_hex": "#ee5f84",
+                "colour_rgb": "rgb(238,95,132)"
+            },
+            {
+                "colour_hex": "#272348",
+                "colour_rgb": "rgb(39,35,72)"
+            },
+            {
+                "colour_hex": "#5b558b",
+                "colour_rgb": "rgb(91,85,139)"
+            },
+            {
+                "colour_hex": "#d9dff4",
+                "colour_rgb": "rgb(217,223,244)"
+            }
+        ]
+    },
+    {
+        "title": "Elegant",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#e1d4b0",
+                "colour_rgb": "rgb(225,212,176)"
+            },
+            {
+                "colour_hex": "#eee3c5",
+                "colour_rgb": "rgb(238,227,197)"
+            },
+            {
+                "colour_hex": "#085445",
+                "colour_rgb": "rgb(8,84,69)"
+            },
+            {
+                "colour_hex": "#053229",
+                "colour_rgb": "rgb(5,50,41)"
+            },
+            {
+                "colour_hex": "#e2c0a5",
+                "colour_rgb": "rgb(226,192,165)"
+            },
+            {
+                "colour_hex": "#f2d8c4",
+                "colour_rgb": "rgb(242,216,196)"
+            },
+            {
+                "colour_hex": "#132b58",
+                "colour_rgb": "rgb(19,43,88)"
+            },
+            {
+                "colour_hex": "#091025",
+                "colour_rgb": "rgb(9,16,37)"
+            },
+            {
+                "colour_hex": "#111921",
+                "colour_rgb": "rgb(17,25,33)"
+            },
+            {
+                "colour_hex": "#1e2c39",
+                "colour_rgb": "rgb(30,44,57)"
+            },
+            {
+                "colour_hex": "#f4f2ed",
+                "colour_rgb": "rgb(244,242,237)"
+            },
+            {
+                "colour_hex": "#e2ded2",
+                "colour_rgb": "rgb(226,222,210)"
+            },
+            {
+                "colour_hex": "#b57256",
+                "colour_rgb": "rgb(181,114,86)"
+            },
+            {
+                "colour_hex": "#cc886c",
+                "colour_rgb": "rgb(204,136,108)"
+            },
+            {
+                "colour_hex": "#194452",
+                "colour_rgb": "rgb(25,68,82)"
+            },
+            {
+                "colour_hex": "#0b2b35",
+                "colour_rgb": "rgb(11,43,53)"
+            }
+        ]
+    },
+    {
+        "title": "Corporate",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#c70942",
+                "colour_rgb": "rgb(199,9,66)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#232323",
+                "colour_rgb": "rgb(35,35,35)"
+            },
+            {
+                "colour_hex": "#ff0000",
+                "colour_rgb": "rgb(255,0,0)"
+            },
+            {
+                "colour_hex": "#260858",
+                "colour_rgb": "rgb(38,8,88)"
+            },
+            {
+                "colour_hex": "#00c29f",
+                "colour_rgb": "rgb(0,194,159)"
+            },
+            {
+                "colour_hex": "#f4f2ed",
+                "colour_rgb": "rgb(244,242,237)"
+            },
+            {
+                "colour_hex": "#e2ded2",
+                "colour_rgb": "rgb(226,222,210)"
+            },
+            {
+                "colour_hex": "#f09e28",
+                "colour_rgb": "rgb(240,158,40)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#182d40",
+                "colour_rgb": "rgb(24,45,64)"
+            },
+            {
+                "colour_hex": "#0c1721",
+                "colour_rgb": "rgb(12,23,33)"
+            },
+            {
+                "colour_hex": "#e2ded2",
+                "colour_rgb": "rgb(226,222,210)"
+            },
+            {
+                "colour_hex": "#f2f0eb",
+                "colour_rgb": "rgb(242,240,235)"
+            },
+            {
+                "colour_hex": "#ce1731",
+                "colour_rgb": "rgb(206,23,49)"
+            },
+            {
+                "colour_hex": "#810315",
+                "colour_rgb": "rgb(129,3,21)"
+            }
+        ]
+    },
+    {
+        "title": "Double Colour",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#00afff",
+                "colour_rgb": "rgb(0,175,255)"
+            },
+            {
+                "colour_hex": "#08a1e7",
+                "colour_rgb": "rgb(8,161,231)"
+            },
+            {
+                "colour_hex": "#232323",
+                "colour_rgb": "rgb(35,35,35)"
+            },
+            {
+                "colour_hex": "#000000",
+                "colour_rgb": "rgb(0,0,0)"
+            },
+            {
+                "colour_hex": "#ffb800",
+                "colour_rgb": "rgb(255,184,0)"
+            },
+            {
+                "colour_hex": "#c89208",
+                "colour_rgb": "rgb(200,146,8)"
+            },
+            {
+                "colour_hex": "#232323",
+                "colour_rgb": "rgb(35,35,35)"
+            },
+            {
+                "colour_hex": "#000000",
+                "colour_rgb": "rgb(0,0,0)"
+            },
+            {
+                "colour_hex": "#19075f",
+                "colour_rgb": "rgb(25,7,95)"
+            },
+            {
+                "colour_hex": "#301a85",
+                "colour_rgb": "rgb(48,26,133)"
+            },
+            {
+                "colour_hex": "#d2124b",
+                "colour_rgb": "rgb(210,18,75)"
+            },
+            {
+                "colour_hex": "#ff2768",
+                "colour_rgb": "rgb(255,39,104)"
+            },
+            {
+                "colour_hex": "#f2f2f2",
+                "colour_rgb": "rgb(242,242,242)"
+            },
+            {
+                "colour_hex": "#d9d9d9",
+                "colour_rgb": "rgb(217,217,217)"
+            },
+            {
+                "colour_hex": "#232323",
+                "colour_rgb": "rgb(35,35,35)"
+            },
+            {
+                "colour_hex": "#000000",
+                "colour_rgb": "rgb(0,0,0)"
+            }
+        ]
+    },
+    {
+        "title": "Tech Palette",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#406aff",
+                "colour_rgb": "rgb(64,106,255)"
+            },
+            {
+                "colour_hex": "#0d359f",
+                "colour_rgb": "rgb(13,53,159)"
+            },
+            {
+                "colour_hex": "#ff2768",
+                "colour_rgb": "rgb(255,39,104)"
+            },
+            {
+                "colour_hex": "#f4f4f4",
+                "colour_rgb": "rgb(244,244,244)"
+            },
+            {
+                "colour_hex": "#301a85",
+                "colour_rgb": "rgb(48,26,133)"
+            },
+            {
+                "colour_hex": "#19075f",
+                "colour_rgb": "rgb(25,7,95)"
+            },
+            {
+                "colour_hex": "#00c3b9",
+                "colour_rgb": "rgb(0,195,185)"
+            },
+            {
+                "colour_hex": "#f2f2f2",
+                "colour_rgb": "rgb(242,242,242)"
+            },
+            {
+                "colour_hex": "#010c29",
+                "colour_rgb": "rgb(1,12,41)"
+            },
+            {
+                "colour_hex": "#08205d",
+                "colour_rgb": "rgb(8,32,93)"
+            },
+            {
+                "colour_hex": "#e9ebf0",
+                "colour_rgb": "rgb(233,235,240)"
+            },
+            {
+                "colour_hex": "#f09e28",
+                "colour_rgb": "rgb(240,158,40)"
+            },
+            {
+                "colour_hex": "#494949",
+                "colour_rgb": "rgb(73,73,73)"
+            },
+            {
+                "colour_hex": "#000000",
+                "colour_rgb": "rgb(0,0,0)"
+            },
+            {
+                "colour_hex": "#6a79ff",
+                "colour_rgb": "rgb(106,121,255)"
+            },
+            {
+                "colour_hex": "#f4f4f4",
+                "colour_rgb": "rgb(244,244,244)"
+            }
+        ]
+    },
+    {
+        "title": "Green",
+        "description": "",
+        "colors": [
+            {
+                "colour_hex": "#096754",
+                "colour_rgb": "rgb(9,103,84)"
+            },
+            {
+                "colour_hex": "#085445",
+                "colour_rgb": "rgb(8,84,69)"
+            },
+            {
+                "colour_hex": "#064337",
+                "colour_rgb": "rgb(6,67,55)"
+            },
+            {
+                "colour_hex": "#053229",
+                "colour_rgb": "rgb(5,50,41)"
+            },
+            {
+                "colour_hex": "#06c067",
+                "colour_rgb": "rgb(6,192,103)"
+            },
+            {
+                "colour_hex": "#079551",
+                "colour_rgb": "rgb(7,149,81)"
+            },
+            {
+                "colour_hex": "#056f3c",
+                "colour_rgb": "rgb(5,111,60)"
+            },
+            {
+                "colour_hex": "#054e2b",
+                "colour_rgb": "rgb(5,78,43)"
+            },
+            {
+                "colour_hex": "#bdd9c5",
+                "colour_rgb": "rgb(189,217,197)"
+            },
+            {
+                "colour_hex": "#9bbaa4",
+                "colour_rgb": "rgb(155,186,164)"
+            },
+            {
+                "colour_hex": "#c8ddce",
+                "colour_rgb": "rgb(200,221,206)"
+            },
+            {
+                "colour_hex": "#f4f4f4",
+                "colour_rgb": "rgb(244,244,244)"
+            },
+            {
+                "colour_hex": "#f1f0de",
+                "colour_rgb": "rgb(241,240,222)"
+            },
+            {
+                "colour_hex": "#eae8c6",
+                "colour_rgb": "rgb(234,232,198)"
+            },
+            {
+                "colour_hex": "#d7d39f",
+                "colour_rgb": "rgb(215,211,159)"
+            },
+            {
+                "colour_hex": "#c2bf8e",
+                "colour_rgb": "rgb(194,191,142)"
+            }
+        ]
+    }
+]

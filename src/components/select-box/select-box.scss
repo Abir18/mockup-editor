@@ -1,0 +1,101 @@
+@import "../../assets/css/variables.scss";
+@import "../../assets/css/mixins.scss";
+
+.select-box-container {
+    position: relative;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $background-color;
+        border: 1px solid $border-color;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+        border-radius: 0.3rem;
+        cursor: pointer;
+
+        @include whenDark {
+            border: 1px solid $dark-border-color;
+            background-color: $background-color-dark-light
+        }
+
+        p {
+            white-space: nowrap;
+            width: 60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            user-select: none;
+
+            @include whenDark {
+                color: white;
+            }
+        }
+    }
+
+    .container-padding {
+        padding: 0.5rem 1rem;
+
+        p {
+            font-size: 0.8rem;
+            font-family: Inter;
+        }
+    }
+
+    .select-open-container {
+        position: absolute;
+        width: 100%;
+        // top: 40px;
+        max-height: 300px;
+        z-index: 99;
+        background-color: white;
+        border: 1px solid $border-color;
+
+        @include whenDark {
+            background-color: $background-color-dark-light;
+            border: 1px solid $dark-border-color;
+        }
+
+        border-radius: 0.3rem;
+        overflow: auto;
+
+        .select-option {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+
+            p {
+                font-family: 'Inter';
+                font-size: 0.8rem;
+                -webkit-user-select: none;
+                /* Safari */
+                -ms-user-select: none;
+                /* IE 10 and IE 11 */
+                user-select: none;
+
+                /* Standard syntax */
+                @include whenDark {
+                    color: white;
+                }
+            }
+        }
+
+        .select-option:hover {
+            background-color: $primary-color-light;
+        }
+    }
+
+    .select-open-container::-webkit-scrollbar {
+        width: 2px;
+    }
+
+    .select-open-container::-webkit-scrollbar-track {
+        background: #d6d6d6;
+        border-radius: 9px;
+    }
+
+    .select-open-container::-webkit-scrollbar-thumb {
+        background: #989898;
+        border-radius: 9px;
+    }
+
+}

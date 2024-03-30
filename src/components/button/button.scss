@@ -1,0 +1,79 @@
+@import "../../assets/css/variables.scss";
+@import "../../assets/css/mixins.scss";
+
+.btn {
+  padding: 0.32rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.disabled-button {
+  background-color: $border-color;
+  border: 1px solid $border-color;
+  user-select: none;
+  pointer-events: none;
+}
+
+.primary-button {
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  color: white;
+}
+
+.ghost-button {
+  background-color: transparent;
+  // background-color: $primary-color-light;
+  border: 1px solid transparent;
+  color: $primary-color;
+}
+
+
+.ghost-button:hover {
+  background-color: $primary-color-light;
+  // border: 1px solid $primary-color;
+}
+
+.artificial-intelligence-button {
+  background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+  border: 1px solid transparent;
+  color: white;
+  opacity: 1;
+  transition: all .3s;
+}
+
+.artificial-intelligence-button:hover {
+  background: linear-gradient(45deg, #02c483, #4d005c, #c00264);
+  transition: all .3s;
+  // background: transparent;
+  // color: #69007f;
+  // border: 1px solid;
+  // border-image: linear-gradient(45deg, #0ce39a, #69007f, #fc0987) 1;
+}
+
+
+.primary-button:hover {
+  background-color: $primary-color-dark;
+  border: 1px solid $primary-color-dark;
+  color: white;
+}
+
+.outline-button {
+  border: 1px solid $primary-color;
+  background-color: transparent;
+  color: $primary-color;
+
+  @include whenDark {
+    border: 1px solid $dark-border-color;
+  }
+}
+
+.outline-button:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: white;
+}
