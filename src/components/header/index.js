@@ -12,8 +12,9 @@ const Header = () => {
         <div className="header-right-panel">
           <img
             alt="header-logo"
-            width={60}
-            src="https://www.svgheart.com/wp-content/uploads/2023/06/bow-silhouette_826-430-min.png"
+            width={40}
+            height={30}
+            src="https://www.svgheart.com/wp-content/uploads/2022/07/heart-made-of-hearts_479-430-min.png"
           />
           <QuickActionContainer />
         </div>

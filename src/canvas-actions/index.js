@@ -17,7 +17,7 @@ export * from "./text-actions";
 
 export const canvasInit = (callBack = () => {}) => {
   return new Promise((resolve, reject) => {
-    let canvasWidth = 1080,
+    let canvasWidth = 1280,
       canvasHeight = 1080;
     const created_canvas = new fabric.Canvas("canvas", {
       width: canvasWidth,

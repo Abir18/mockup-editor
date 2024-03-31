@@ -2,53 +2,52 @@ import {addImageOnCanvas, changeCanvasBackground} from "canvas-actions";
 import CategoryView from "components/category-view";
 import InputField from "components/input-field";
 import {fabric} from "fabric";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const MockupLibrary = () => {
   // ID
-  //   const id = 339;
+  //   id = 339;
 
-  const apiData = (id) => {
-    return {
-      thumbnail:
-        "https://www.svgheart.com/wp-content/uploads/2023/03/pinch-proof_409-430-min.png",
+  const response = {
+    thumbnail:
+      "https://www.svgheart.com/wp-content/uploads/2023/06/bow-silhouette_826-430-min.png",
 
-      tshirt:
-        "https://svgheart.com/wp-content/themes/astra-child/img/t-shirt-new.svg",
-      mug: "https://svgheart.com/wp-content/themes/astra-child/img/cup.svg",
-      bag: "https://svgheart.com/wp-content/themes/astra-child/img/bag.svg",
-      pillow:
-        "https://www.svgheart.com/wp-content/uploads/2023/06/bow-silhouette_826-430-min.png"
-    };
+    tshirt:
+      "https://mockuptree.com/wp-content/uploads/edd/2023/04/free-t-shirt-mockup--960x640.jpg",
+    mug: "https://pics.craiyon.com/2023-07-11/31b3d44717c34e7ab82f001d0ec6be4c.webp",
+    bag: "https://www.freemockupworld.com/wp-content/uploads/2023/02/Shopping-Bag-with-Box-Free-Mockup-01.jpg",
+    pillow:
+      "https://mockups-design.com/wp-content/uploads/2021/04/Free_Pillow_Mockup_1.jpg"
   };
 
+  const [mockupData, setMockupData] = useState(response);
+
   useEffect(() => {
-    // API Call
-    //  url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
-    // fetch(url).then(()=>{})
-
-    // const {canvas} = window;
-    // const activeObject = canvas.getActiveObject();
-
-    // const response = apiData();
-    // console.log(apiData(), "apires");
-
-    // // changeCanvasBackground(response.thumbnail);
-    // addImageOnCanvas(response.pillow);
-    // canvas.renderAll();
-    // addBackgroundImageOnCanvas(response.thumbnail);
-
-    // canvas.renderAll();
-
-    // const canvas = new fabric.Canvas("canvas");
     const {canvas} = window;
     canvas.getActiveObject();
 
-    const response = apiData();
+    // API Call
+    //const url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
+    // fetch(url)
+    //   .then((data) => {
+    //     setMockupData(data);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
-    addImageOnCanvas(response.pillow);
+    const query = "mug"; // Parse query from url
+
+    // API Call
+    // const response = await fetch(url);
+
+    console.log(mockupData[query], "mockupData[query]");
+
+    // setMockupData(response);
+
+    addImageOnCanvas(mockupData.thumbnail);
     canvas.renderAll();
-    changeCanvasBackground(response.thumbnail);
+    changeCanvasBackground(mockupData[query]);
 
     // Load mockup image
     // fabric.Image.fromURL(response.thumbnail,
@@ -63,14 +62,13 @@ const MockupLibrary = () => {
     // );
 
     // Load logo
-    fabric.Image.fromURL(response.pillow, function (logo) {
+    fabric.Image.fromURL(response.thumbnail, function (logo) {
       logo.set({
-        left: 100,
-        top: 10,
+        left: 300,
+        top: 300,
         scaleX: 0.2,
         scaleY: 0.2
-
-        //   selectable: true // Make logo not selectable
+        //   selectable: true
       });
       canvas.add(logo);
       canvas.renderAll();

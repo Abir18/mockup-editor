@@ -1,19 +1,22 @@
-import { fabric } from "fabric";
+import {fabric} from "fabric";
 export const addImageOnCanvas = (url, options = {}, watermark = false) => {
-  const { canvas } = window;
+  const {canvas} = window;
   if (!canvas) return;
   fabric.Image.fromURL(
     url,
     (img) => {
       img.set({
-        scaleX: 1,
-        scaleY: 1,
+        scaleX: 0,
+        scaleY: 0,
+        top: 0,
+        left: 0,
+
         objectCaching: false,
         originX: "center",
         originY: "center",
-        centeredScaling: true,
+        centeredScaling: false,
         src: url,
-        ...options,
+        ...options
       });
       if (!watermark) {
         const W = canvas.width - 500;
@@ -35,24 +38,24 @@ export const addImageOnCanvas = (url, options = {}, watermark = false) => {
       } else {
         img.set({
           top: canvas.height - 30,
-          left: canvas.width - 30,
+          left: canvas.width - 30
         });
         canvas.set({
           watermark: true,
-          watermarkPosition: "right-bottom",
+          watermarkPosition: "right-bottom"
         });
       }
 
       canvas.requestRenderAll();
     },
-    { crossOrigin: "anonymous" }
+    {crossOrigin: "anonymous"}
   );
 };
 
 export const addBackgroundImageOnCanvas = (url) => {
-  const { canvas } = window;
+  const {canvas} = window;
   if (!canvas) return;
-  const { width, height } = canvas;
+  const {width, height} = canvas;
   fabric.Image.fromURL(url, function (img) {
     const W = width;
     const H = height;
@@ -61,14 +64,17 @@ export const addBackgroundImageOnCanvas = (url) => {
     const h = img.getScaledHeight();
     const k = h / w;
     k < K ? img.scaleToHeight(H) : img.scaleToWidth(W);
-    canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
-    }, {crossOrigin: 'anonymous'});
+    canvas.setBackgroundImage(
+      img,
+      canvas.renderAll.bind(canvas),
+      {},
+      {crossOrigin: "anonymous"}
+    );
   });
-
-}
+};
 
 export const replaceImage = (url) => {
-  const { canvas } = window;
+  const {canvas} = window;
   if (!canvas) return;
   const activeObject = canvas.getActiveObject();
   if (!activeObject) return;
@@ -78,7 +84,7 @@ export const replaceImage = (url) => {
 };
 
 export const changeWatermarkPosition = (new_position = "") => {
-  const { canvas } = window;
+  const {canvas} = window;
   if (!canvas) return;
   var left, top;
   switch (new_position) {
@@ -133,25 +139,25 @@ export const changeWatermarkPosition = (new_position = "") => {
     if (watermark.length > 0) {
       watermark[0].set({
         left,
-        top,
+        top
       });
     }
   }
   canvas.set({
-    waterPosition: new_position,
+    waterPosition: new_position
   });
   canvas.renderAll();
 };
 
 export const removeWatermark = () => {
-  const { canvas } = window;
+  const {canvas} = window;
   if (!canvas) return;
   const watermark = canvas._objects.filter((x) => x.type === "watermark");
   if (watermark.length > 0) {
     canvas.remove(watermark[0]);
     canvas.set({
       watermark: false,
-      watermarkPosition: "right-bottom",
+      watermarkPosition: "right-bottom"
     });
     canvas.renderAll();
   }

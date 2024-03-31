@@ -23,7 +23,8 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
                   <div
                     onClick={() => onClick(item)}
                     className={`${type}-container`}
-                    key={`Detailed View Shapes ${item} - ${index}`}
+                    key={index}
+                    // key={`Detailed View Shapes ${item} - ${index}`}
                   >
                     <img alt="" src={item} />
                   </div>

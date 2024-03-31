@@ -27,6 +27,12 @@ const ZoomCanvas = () => {
             {title: "200%", value: 200}
           ]}
         />
+
+        {/* <span
+          style={{position: "relative", top: -1, left: -65, fontSize: "14px"}}
+        >
+          %
+        </span> */}
         <div
           onClick={() => zoom.setZoom(zoom.value + 10)}
           className="action-button"
