@@ -19,6 +19,7 @@ import {debounce, getFileExtension} from "utils";
 const Editor = () => {
   const dispatch = useDispatch();
   const [canvasLoaded, setCanvasLoaded] = useState(false);
+
   useEffect(() => {
     canvasInit(canvasCallBack).then((canvas) => {
       startKeyboardEvents(canvas);
@@ -86,6 +87,8 @@ const Editor = () => {
       const activeObject = canvas.getActiveObject();
       const {type, id} = activeObject;
       dispatch(changeActiveObject({type, id}));
+      // console.log(activeObject, "ActiveObject");
+      // console.log(changeActiveObject(), "changeActiveObject");
     });
     canvas.on("after:render", function () {
       saveToDatabase();

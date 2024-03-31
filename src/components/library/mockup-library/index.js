@@ -1,7 +1,87 @@
-import {changeCanvasBackground} from "canvas-actions";
+import {addImageOnCanvas, changeCanvasBackground} from "canvas-actions";
 import CategoryView from "components/category-view";
 import InputField from "components/input-field";
+import {fabric} from "fabric";
+import {useEffect} from "react";
+
 const MockupLibrary = () => {
+  // ID
+  //   const id = 339;
+
+  const apiData = (id) => {
+    return {
+      thumbnail:
+        "https://www.svgheart.com/wp-content/uploads/2023/03/pinch-proof_409-430-min.png",
+
+      tshirt:
+        "https://svgheart.com/wp-content/themes/astra-child/img/t-shirt-new.svg",
+      mug: "https://svgheart.com/wp-content/themes/astra-child/img/cup.svg",
+      bag: "https://svgheart.com/wp-content/themes/astra-child/img/bag.svg",
+      pillow:
+        "https://www.svgheart.com/wp-content/uploads/2023/06/bow-silhouette_826-430-min.png"
+    };
+  };
+
+  useEffect(() => {
+    // API Call
+    //  url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
+    // fetch(url).then(()=>{})
+
+    // const {canvas} = window;
+    // const activeObject = canvas.getActiveObject();
+
+    // const response = apiData();
+    // console.log(apiData(), "apires");
+
+    // // changeCanvasBackground(response.thumbnail);
+    // addImageOnCanvas(response.pillow);
+    // canvas.renderAll();
+    // addBackgroundImageOnCanvas(response.thumbnail);
+
+    // canvas.renderAll();
+
+    // const canvas = new fabric.Canvas("canvas");
+    const {canvas} = window;
+    canvas.getActiveObject();
+
+    const response = apiData();
+
+    addImageOnCanvas(response.pillow);
+    canvas.renderAll();
+    changeCanvasBackground(response.thumbnail);
+
+    // Load mockup image
+    // fabric.Image.fromURL(response.thumbnail,
+    //   function (img) {
+    //     img.set({
+    //       selectable: false
+    //     });
+    //     img.scaleToWidth(canvas.width);
+    //     canvas.add(img);
+    //     canvas.renderAll();
+    //   }
+    // );
+
+    // Load logo
+    fabric.Image.fromURL(response.pillow, function (logo) {
+      logo.set({
+        left: 100,
+        top: 10,
+        scaleX: 0.2,
+        scaleY: 0.2
+
+        //   selectable: true // Make logo not selectable
+      });
+      canvas.add(logo);
+      canvas.renderAll();
+    });
+
+    // Clean up
+    // return () => {
+    //   canvas.dispose();
+    // };
+  }, []);
+
   return (
     <>
       <div className="library-inner-container">
@@ -116,6 +196,8 @@ const shapes_library = [
       "https://assets.mediamodifier.com/mockups/5b054111306e03fd32cc5e88/pillow-on-couch-online-mockup-generator.jpg",
       "https://www.pixpine.com/wp-content/uploads/2021/11/free-two-pillows-mockup-1.jpg",
       "https://unblast.com/wp-content/uploads/2018/10/Pillow-Mockup.jpg",
+      "https://erinplewes.com/cdn/shop/products/erin-plewes-mockups-pillow-mockup-square-pillow-mockup-with-rustic-wood-background-for-lifestyle-stock-photography-white-pillow-mock-up-jpeg-digital-download-15387262877738.jpg?v=1617883716&width=1946",
+      "https://erinplewes.com/cdn/shop/products/erin-plewes-mockups-pillow-mockup-square-pillow-mockup-with-rustic-wood-background-for-lifestyle-stock-photography-white-pillow-mock-up-jpeg-digital-download-15387262877738.jpg?v=1617883716&width=1946",
       "https://erinplewes.com/cdn/shop/products/erin-plewes-mockups-pillow-mockup-square-pillow-mockup-with-rustic-wood-background-for-lifestyle-stock-photography-white-pillow-mock-up-jpeg-digital-download-15387262877738.jpg?v=1617883716&width=1946"
     ]
   }
