@@ -62,9 +62,9 @@ const MockupLibrary = () => {
     // );
 
     // Load logo
-    fabric.Image.fromURL(response.thumbnail, function (logo) {
+    fabric.Image.fromURL(mockupData.thumbnail, function (logo) {
       logo.set({
-        left: 300,
+        left: 350,
         top: 300,
         scaleX: 0.2,
         scaleY: 0.2
@@ -78,7 +78,7 @@ const MockupLibrary = () => {
     // return () => {
     //   canvas.dispose();
     // };
-  }, []);
+  }, [mockupData]);
 
   return (
     <>
