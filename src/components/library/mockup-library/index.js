@@ -1,6 +1,7 @@
 import {addImageOnCanvas, changeCanvasBackground} from "canvas-actions";
 import CategoryView from "components/category-view";
 import InputField from "components/input-field";
+import UploadMockup from "components/upload-mockup";
 import {fabric} from "fabric";
 import {useEffect, useState} from "react";
 
@@ -27,6 +28,7 @@ const MockupLibrary = () => {
     canvas.getActiveObject();
 
     // API Call
+
     //const url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
     // fetch(url)
     //   .then((data) => {
@@ -86,6 +88,8 @@ const MockupLibrary = () => {
         <InputField placeholder="Quick find" />
       </div>
       <div className="divider" />
+      <UploadMockup onClick={(value) => changeCanvasBackground(value)} />
+      <div className="divider" />
       <CategoryView
         type="image"
         onClick={(value) => changeCanvasBackground(value)}
@@ -119,6 +123,7 @@ const shapes_library = [
       "https://img.freepik.com/free-psd/premium-quality-mockup-ready-use_53876-57715.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705881600&semt=ais",
       "https://mockups-design.com/wp-content/uploads/2021/05/Free_Mug_Mockup_1-1.jpg",
       "https://mockuptree.com/wp-content/uploads/edd/2022/07/Free-Coffee-Cup-Mockup.jpg",
+      "https://www.svgheart.com/wp-content/uploads/2021/11/cat-face-sleeping-pet-lover-free-svg-file-SvgHeart.Com.png",
       "https://www.psdmockups.com/wp-content/uploads/2022/11/Stacked-Paper-Cup-Mockups.jpg",
       "https://unblast.com/wp-content/uploads/2021/08/Paper-Coffee-Cup-with-Sleeve-Mockup.jpg",
       "https://graphberry-imgs.imgix.net/coffee-cup-psd-mockup.jpg?auto=compress,format&q=80&w=800",

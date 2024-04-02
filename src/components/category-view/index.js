@@ -3,6 +3,8 @@ import AppIcon from "utils/app-icon";
 const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
   const [detailedView, setDetailedView] = useState(null);
 
+  console.log(detailedView, "detailedView");
+
   return (
     <>
       {detailedView !== null ? (

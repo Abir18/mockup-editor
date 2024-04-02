@@ -11,7 +11,7 @@ const useZoomCanvas = () => {
     };
   }, []);
   const handleChangeZoom = (value) => {
-    if (value > 9 && value <= 200) {
+    if (value > 0 && value <= 200) {
       const element = document.getElementById("canvas-zoom-container");
       element.style.transform = `scale(${value / 100})`;
       setZoom(value);

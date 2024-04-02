@@ -10,10 +10,7 @@ export const changeCanvasBackground = (url) => {
     const K = H / W;
     const w = img.getScaledWidth();
     const h = img.getScaledHeight();
-    console.log(w, "w");
-    console.log(W, "canvasW");
-    console.log(h, "h");
-    console.log(H, "canvasH");
+
     const k = h / w;
     k < K ? img.scaleToHeight(H) : img.scaleToWidth(W);
     canvas.setBackgroundImage(
@@ -25,10 +22,11 @@ export const changeCanvasBackground = (url) => {
         scaleY: canvas.height / h,
         scaleX: canvas.width / w,
         selectable: true,
-        lockMovementX: true,
-        lockMovementY: true,
-        lockRotation: true,
-        erasable: true
+        movementX: true
+        // lockMovementX: false,
+        // lockMovementY: false,
+        // lockRotation: false,
+        // erasable: true
       },
       {crossOrigin: "anonymous"}
     );
