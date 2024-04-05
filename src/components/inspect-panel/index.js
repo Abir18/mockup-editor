@@ -1,4 +1,3 @@
-
 import ControlsView from "./controls";
 const InspectPanel = () => {
   return (
@@ -12,4 +11,3 @@ const InspectPanel = () => {
   );
 };
 export default InspectPanel;
-

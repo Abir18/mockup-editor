@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { handleBackgroundGradient } from "canvas-actions";
 import {
   addGridOnCanvas,
-  removeGridsFromCanvas,
   addImageOnCanvas,
   changeWatermarkPosition,
-  removeWatermark,
+  handleBackgroundGradient,
+  removeGridsFromCanvas,
+  removeWatermark
 } from "canvas-actions";
+import {useState} from "react";
 const useBackgroundControl = () => {
-  const { canvas } = window;
+  const {canvas} = window;
   const [backgroundOption, setBackgroundOption] = useState("Colors");
   const [addGrid, setAddGrid] = useState(canvas?.gridActive || false);
   const [watermark, setWatermark] = useState(canvas?.watermark || false);
@@ -32,20 +32,20 @@ const useBackgroundControl = () => {
     setGridColumn(value);
   };
   const handleAddWatermark = (value) => {
-    const { canvas } = window;
+    const {canvas} = window;
     if (!canvas) return;
     if (value) {
       addImageOnCanvas(
         "http://localhost:3000/static/media/logo.1be2fc32a5953bd66510f9fea9a17b58.svg",
         {
-          seletable: false,
+          selectable: false,
           lockMovementX: true,
           lockMovementY: true,
           lockScalingY: true,
           lockScalingX: true,
           evented: false,
           // angle:360,
-          type: "watermark",
+          type: "watermark"
         },
         true
       );
@@ -63,21 +63,21 @@ const useBackgroundControl = () => {
   return {
     backgroundOption: {
       get: backgroundOption,
-      set: setBackgroundOption,
+      set: setBackgroundOption
     },
     grid: {
       value: addGrid,
       gridColumns: gridColumn,
       setGridColumn: handleGridColumn,
-      set: toggleGrid,
+      set: toggleGrid
     },
     watermark: {
       value: watermark,
       set: handleAddWatermark,
       watermarkPosition: waternarkPosition,
-      changePosition: handleChangePosition,
+      changePosition: handleChangePosition
     },
-    addGradientToBg,
+    addGradientToBg
   };
 };
 export default useBackgroundControl;

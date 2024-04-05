@@ -5,9 +5,12 @@ export const addImageOnCanvas = (url, options = {}, watermark = false) => {
   fabric.Image.fromURL(
     url,
     (img) => {
+      // img.scaleToHeight(10);
+      // img.scaleToWidth(10);
+
       img.set({
-        scaleX: 0,
-        scaleY: 0,
+        // scaleX: 0.01,
+        // scaleY: 0.01,
         top: 0,
         left: 0,
 
@@ -26,9 +29,10 @@ export const addImageOnCanvas = (url, options = {}, watermark = false) => {
         const h = img.getScaledHeight();
         const k = h / w;
         k < K ? img.scaleToHeight(H) : img.scaleToWidth(W);
-      } else {
-        img.scaleToWidth(30);
       }
+      // else {
+      //   img.scaleToWidth(10);
+      // }
 
       // Add the image to the canvas
       canvas.add(img);
@@ -70,6 +74,13 @@ export const addBackgroundImageOnCanvas = (url) => {
       {},
       {crossOrigin: "anonymous"}
     );
+    img.set({
+      left: 350,
+      top: 300,
+      scaleX: 0.2,
+      scaleY: 0.2,
+      selectable: true
+    });
   });
 };
 

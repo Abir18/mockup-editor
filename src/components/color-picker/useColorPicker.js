@@ -1,31 +1,39 @@
-import { useState, useEffect, useCallback } from "react";
 import {
+  hexToHsva,
   hsvaToHex,
   hsvaToRgbaString,
-  hexToHsva,
   rgbaStringToHsva,
-  validHex,
+  validHex
 } from "@uiw/color-convert";
-import useEyeDropper from "use-eye-dropper";
 import {
-  handleBackgroundGradient,
-  handleRemoveBGGradient,
-  handleChangeBGGradType,
-  handleChangeBGGradProp,
   addGradientToFill,
-  removeGradientFill,
+  handleBackgroundGradient,
+  handleChangeBGGradProp,
+  handleChangeBGGradType,
   handleChangeFillGradProp,
+  handleRemoveBGGradient,
+  removeGradientFill
 } from "canvas-actions";
-import { fabric } from "fabric";
-import { cloneDeep } from "lodash";
+import {fabric} from "fabric";
+import {cloneDeep} from "lodash";
+import {useCallback, useEffect, useState} from "react";
+import useEyeDropper from "use-eye-dropper";
 const useColorPicker = (activeObject, objectKey) => {
-  const { canvas } = window;
+  const {canvas} = window;
+  // const activeObject = canvas?.getActiveObject();
+
   let currentColor;
   if (objectKey === "shadow") {
     currentColor = activeObject?.shadow?.color || "#000000";
   } else if (objectKey === "background") {
     const currentFill =
-      canvas?.backgroundColor == "white"
+      canvas?.backgroundColor === "white"
+        ? "#ffffff"
+        : canvas?.backgroundColor || "#0000";
+    currentColor = currentFill;
+  } else if (objectKey === "image") {
+    const currentFill =
+      canvas?.backgroundColor === "white"
         ? "#ffffff"
         : canvas?.backgroundColor || "#0000";
     currentColor = currentFill;
@@ -39,18 +47,19 @@ const useColorPicker = (activeObject, objectKey) => {
   const [isOpen, setIsOpen] = useState(false);
   const [hex, setHex] = useState(hsvaToHex(hsvaString));
   const [documentColors, setDocumentColors] = useState([]);
-  const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
+  const [hsva, setHsva] = useState({h: 214, s: 43, v: 90, a: 1});
   const [isGrad, setIsGrad] = useState(false);
   const [gradType, setGradType] = useState("Linear");
   const [gradient, setGradient] = useState([
-    { value: "rgba(96,93,93,1)", left: 0 },
-    { value: "rgba(255,255,255,1)", left: 1 },
+    {value: "rgba(96,93,93,1)", left: 0},
+    {value: "rgba(255,255,255,1)", left: 1}
   ]);
   //   Eye Dropper
-  const { open, close, isSupported } = useEyeDropper();
+  const {open, close, isSupported} = useEyeDropper();
   useEffect(() => {
     getDocumentColor();
   }, []);
+
   const checkIsGrad = () => {
     let gradient = [];
     if (
@@ -71,7 +80,7 @@ const useColorPicker = (activeObject, objectKey) => {
   const handleOpenGradient = (gradient) => {
     const colorStops = gradient.colorStops.map((item) => ({
       value: item.color,
-      left: item.offset,
+      left: item.offset
     }));
     setGradient(cloneDeep(colorStops));
     setIsGrad(true);
@@ -106,14 +115,51 @@ const useColorPicker = (activeObject, objectKey) => {
 
   const canvasChange = (color) => {
     if (objectKey === "background") {
-      canvas.set({ backgroundColor: color, backgroundImage: null });
+      canvas.set({backgroundColor: color, backgroundImage: null});
+    }
+    if (objectKey === "image") {
+      // console.log("image null");
+      canvas.set({
+        // backgroundColor: color,
+        fill: color
+        // backgroundImage: null
+      });
+      // activeObject.color = color;
     }
     if (activeObject) {
       if (objectKey === "shadow") {
         activeObject.shadow.color = color;
+      } else if (objectKey === "image") {
+        // console.log("image null");
+        activeObject.backgroundColor = color;
+        activeObject.color = color;
+        activeObject.fill = color;
+        if (activeObject && activeObject.type === "image") {
+          // console.log(activeObject._objects, "fill");
+          activeObject.color = "rgba(255,255,255,0.7)";
+          // activeObject.paths.forEach(function (path) {
+          //   path.fill = color;
+          // });
+          // activeObject.set("fill", color);
+          // activeObject.set({color: color});
+          // activeObject.filters = []; // Clear existing filters
+          // activeObject.applyFilters(); // Apply changes
+          // // Apply color overlay filter
+          // activeObject.filters.push(
+          //   new fabric.Image.filters.Tint({
+          //     color: color
+          //   })
+          // );
+          // activeObject.applyFilters();
+          // var filter = new fabric.Image.filters.Tint({
+          //   color: "#3513B0",
+          //   opacity: 0.5
+          // });
+          // activeObject.filters.push(filter);
+        }
       } else {
         activeObject.set({
-          [objectKey]: color,
+          [objectKey]: color
         });
       }
     }
@@ -178,7 +224,7 @@ const useColorPicker = (activeObject, objectKey) => {
     }
     const colorStops = grad.colors.map((item) => ({
       offset: item.left / 100,
-      color: item.value,
+      color: item.value
     }));
     setGradient(cloneDeep(colorStops));
   };
@@ -191,7 +237,7 @@ const useColorPicker = (activeObject, objectKey) => {
   return {
     hex,
     handleChangeColor,
-    openModal: { get: isOpen, set: openModel },
+    openModal: {get: isOpen, set: openModel},
     hsva,
     documentColors,
     pickColor,
@@ -204,8 +250,8 @@ const useColorPicker = (activeObject, objectKey) => {
       gradientValue: gradient,
       set: handleAddGradient,
       changeType: changeGradientType,
-      changeProp: changeGradientProp,
-    },
+      changeProp: changeGradientProp
+    }
   };
 };
 export default useColorPicker;

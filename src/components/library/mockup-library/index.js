@@ -1,100 +1,107 @@
-import {addImageOnCanvas, changeCanvasBackground} from "canvas-actions";
+import {changeCanvasBackground} from "canvas-actions";
 import CategoryView from "components/category-view";
 import InputField from "components/input-field";
 import UploadMockup from "components/upload-mockup";
-import {fabric} from "fabric";
-import {useEffect, useState} from "react";
 
 const MockupLibrary = () => {
-  // ID
-  //   id = 339;
+  // console.log(window.location.href, "window.location.href");
+  // console.log(window.location.pathname, "window.location.path");
 
-  const response = {
-    thumbnail:
-      "https://www.svgheart.com/wp-content/uploads/2023/06/bow-silhouette_826-430-min.png",
+  // const pathname = window.location.pathname;
+  // const id = Number(pathname.split("/")[2]);
+  // console.log(id, "ID");
 
-    tshirt:
-      "https://mockuptree.com/wp-content/uploads/edd/2023/04/free-t-shirt-mockup--960x640.jpg",
-    mug: "https://pics.craiyon.com/2023-07-11/31b3d44717c34e7ab82f001d0ec6be4c.webp",
-    bag: "https://www.freemockupworld.com/wp-content/uploads/2023/02/Shopping-Bag-with-Box-Free-Mockup-01.jpg",
-    pillow:
-      "https://mockups-design.com/wp-content/uploads/2021/04/Free_Pillow_Mockup_1.jpg"
-  };
+  // const response = {
+  //   thumbnail: download,
 
-  const [mockupData, setMockupData] = useState(response);
+  //   tshirt:
+  //     "https://mockuptree.com/wp-content/uploads/edd/2023/04/free-t-shirt-mockup--960x640.jpg",
+  //   mug: "https://pics.craiyon.com/2023-07-11/31b3d44717c34e7ab82f001d0ec6be4c.webp",
+  //   bag: "https://www.freemockupworld.com/wp-content/uploads/2023/02/Shopping-Bag-with-Box-Free-Mockup-01.jpg",
+  //   pillow:
+  //     "https://mockups-design.com/wp-content/uploads/2021/04/Free_Pillow_Mockup_1.jpg"
+  // };
 
-  useEffect(() => {
-    const {canvas} = window;
-    canvas.getActiveObject();
+  // const [mockupData, setMockupData] = useState(response);
+  // const [draggable, setDraggable] = useState(true);
 
-    // API Call
+  // useEffect(() => {
+  //   const {canvas} = window;
+  //   // canvas.getContext("2d");
+  //   const obj = canvas.getActiveObject();
 
-    //const url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
-    // fetch(url)
-    //   .then((data) => {
-    //     setMockupData(data);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  //   // API Call
 
-    const query = "mug"; // Parse query from url
+  //   //const url = https://svgheart.test/wp-json/mockup/v1/get-preview/31422
+  //   // fetch(url)
+  //   //   .then((data) => {
+  //   //     setMockupData(data);
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.log(error);
+  //   //   });
 
-    // API Call
-    // const response = await fetch(url);
+  //   const query = "tshirt"; // Parse query from url
 
-    console.log(mockupData[query], "mockupData[query]");
+  //   // API Call
+  //   // const response = await fetch(url);
 
-    // setMockupData(response);
+  //   // console.log(mockupData[query], "mockupData[query]");
 
-    addImageOnCanvas(mockupData.thumbnail);
-    canvas.renderAll();
-    changeCanvasBackground(mockupData[query]);
+  //   // setMockupData(response);
 
-    // Load mockup image
-    // fabric.Image.fromURL(response.thumbnail,
-    //   function (img) {
-    //     img.set({
-    //       selectable: false
-    //     });
-    //     img.scaleToWidth(canvas.width);
-    //     canvas.add(img);
-    //     canvas.renderAll();
-    //   }
-    // );
+  //   // addImageOnCanvas(mockupData.thumbnail);
+  //   // canvas.renderAll();
+  //   // changeCanvasBackground(mockupData[query]);
 
-    // Load logo
-    fabric.Image.fromURL(mockupData.thumbnail, function (logo) {
-      logo.set({
-        left: 350,
-        top: 300,
-        scaleX: 0.2,
-        scaleY: 0.2
-        //   selectable: true
-      });
-      canvas.add(logo);
-      canvas.renderAll();
-    });
+  //   // Load mockup image
+  //   console.log(draggable, "draggable");
+  //   fabric.Image.fromURL(mockupData[query], function (img) {
+  //     img.set({
+  //       selectable: draggable
+  //     });
+  //     img.scaleToWidth(canvas.width);
+  //     img.scaleToHeight(canvas.height);
+  //     canvas.add(img);
+  //     img.sendToBack();
+  //     // canvas.renderAll();
+  //   });
 
-    // Clean up
-    // return () => {
-    //   canvas.dispose();
-    // };
-  }, [mockupData]);
+  //   // Load logo
+  //   fabric.Image.fromURL(mockupData.thumbnail, function (logo) {
+  //     logo.set({
+  //       left: 350,
+  //       top: 300,
+  //       scaleX: 0.2,
+  //       scaleY: 0.2,
+  //       selectable: true
+  //     });
+  //     canvas.add(logo);
+  //     // logo.bringToFront();
+  //     // canvas.renderAll();
+  //   });
+
+  //   // Clean up
+  //   return () => {
+  //     // canvas.dispose();
+  //     canvas.remove(obj);
+  //   };
+  // }, [mockupData, draggable]);
 
   return (
     <>
       <div className="library-inner-container">
         <InputField placeholder="Quick find" />
       </div>
-      <div className="divider" />
+      {/* <div className="divider" /> */}
       <UploadMockup onClick={(value) => changeCanvasBackground(value)} />
-      <div className="divider" />
+      {/* <div className="divider" /> */}
       <CategoryView
         type="image"
-        onClick={(value) => changeCanvasBackground(value)}
+        onClick={(value) => changeCanvasBackground(value, {selectable: true})}
         data={shapes_library}
       />
+      {/* <button onClick={() => setDraggable(!draggable)}>hello</button> */}
     </>
   );
 };

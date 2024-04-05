@@ -4,6 +4,7 @@ import "./toolbar.scss";
 import LibraryContainer from "components/library";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleLibraryPanel} from "store/reducers/libraryMenuSlice";
+
 const Toolbar = () => {
   const dispatch = useDispatch();
   const libraryPanel = useSelector((state) => state.libraryPanel);

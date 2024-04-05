@@ -1,18 +1,18 @@
-import "./color-picker.scss";
-import AppIcon from "utils/app-icon";
-import { Wheel, Slider, Alpha } from "@uiw/react-color";
+import {Alpha, Slider, Wheel} from "@uiw/react-color";
 import InputField from "components/input-field";
-import useColorPicker from "./useColorPicker";
-import Draggable from "react-draggable";
-import ToggleSwitch from "components/toggle-switch";
 import SelectBox from "components/select-box";
+import ToggleSwitch from "components/toggle-switch";
+import Draggable from "react-draggable";
+import AppIcon from "utils/app-icon";
+import "./color-picker.scss";
 import GradientPicker from "./gradient-picker";
+import useColorPicker from "./useColorPicker";
 const ColorPicker = ({
   activeObject,
   objectKey = "fill",
   title = "Color",
   containerClass = "",
-  hasGradient = false,
+  hasGradient = false
 }) => {
   const {
     hex,
@@ -24,9 +24,11 @@ const ColorPicker = ({
     handleHexColors,
     handleRandomColor,
     handleInputField,
-    grad,
+    grad
   } = useColorPicker(activeObject, objectKey);
-  const location = { x: 0, y: -70 };
+
+  const location = {x: 0, y: -70};
+
   return (
     <>
       <div
@@ -34,7 +36,7 @@ const ColorPicker = ({
         className={`color-picker ${containerClass}`}
       >
         <div className={`left-container`}>
-          <div style={{ backgroundColor: hex }} className="color-div" />
+          <div style={{backgroundColor: hex}} className="color-div" />
           <p>{hex}</p>
         </div>
         <AppIcon
@@ -46,7 +48,7 @@ const ColorPicker = ({
         <Draggable handle=".drag-handle" defaultPosition={location}>
           <div className="color-picker-modal ">
             <div className="inspect-heading">
-              <div className="d-flex align-center" style={{ gap: 5 }}>
+              <div className="d-flex align-center" style={{gap: 5}}>
                 <AppIcon
                   iconName="icon-drag-handle"
                   classes="w-3 h-3 drag-handle cursor-pointer"
@@ -78,12 +80,12 @@ const ColorPicker = ({
                       options={[
                         {
                           title: "Linear",
-                          value: "Linear",
+                          value: "Linear"
                         },
                         {
                           title: "Radial",
-                          value: "Radial",
-                        },
+                          value: "Radial"
+                        }
                       ]}
                     />
                   ) : null}
@@ -98,7 +100,7 @@ const ColorPicker = ({
                   <div className="wheel-container">
                     <Wheel
                       onChange={(color) =>
-                        handleChangeColor({ ...hsva, ...color.hsva })
+                        handleChangeColor({...hsva, ...color.hsva})
                       }
                       width={90}
                       height={70}
@@ -147,7 +149,7 @@ const ColorPicker = ({
                   <Alpha
                     hsva={hsva}
                     onChange={(newAlpha) => {
-                      handleChangeColor({ ...hsva, ...newAlpha });
+                      handleChangeColor({...hsva, ...newAlpha});
                     }}
                   />
                 </div>
@@ -172,13 +174,13 @@ const ColorPicker = ({
                     documentColors.map((color) => (
                       <div
                         key={`Document Colors Div ${color}`}
-                        style={{ backgroundColor: color }}
+                        style={{backgroundColor: color}}
                         onClick={() => handleHexColors(color)}
                         className="color-div"
                       />
                     ))}
                   {documentColors && documentColors.length === 0 ? (
-                    <p style={{ color: "grey" }} className="controls-heading">
+                    <p style={{color: "grey"}} className="controls-heading">
                       No Colors Found
                     </p>
                   ) : null}
@@ -191,7 +193,7 @@ const ColorPicker = ({
                   {recommended_colors.map((color) => (
                     <div
                       key={`Recommended Colors Div ${color}`}
-                      style={{ backgroundColor: color }}
+                      style={{backgroundColor: color}}
                       onClick={() => handleHexColors(color)}
                       className="color-div"
                     />
@@ -223,12 +225,12 @@ const recommended_colors = [
   "#F8DE4F",
   "#929292",
   "#070707",
-  "#FF4B8F",
+  "#FF4B8F"
 ];
 
 const generateLinearGradientString = (colorsArray) => {
   const gradientStops = colorsArray.map(
-    ({ value, left }) => `${value} ${left * 100}%`
+    ({value, left}) => `${value} ${left * 100}%`
   );
   const linearGradientString = `linear-gradient(90deg, ${gradientStops.join(
     ", "

@@ -1,5 +1,6 @@
 import {fabric} from "fabric";
 import getCustomCursor from "fabric-overrides/cursor";
+import html2canvas from "html2canvas";
 import {jsPDF} from "jspdf";
 import {cloneDeep} from "lodash";
 import {convertToBlobUrl} from "utils";
@@ -183,18 +184,19 @@ export const downloadCanvas = async (format, quality = "Normal") => {
 export const downloadCanvasAsSVG = () => {
   const {canvas} = window;
   if (!canvas) return;
+
   const {width, height} = canvas;
   const svgString = canvas.toSVG({
-    suppressPreamble: true, // Remove the XML preamble
-    viewBox: {
-      x: 0,
-      y: 0,
-      width: width,
-      height: height
-    },
-    suppressWarnings: true // Suppress any Fabric.js warnings in the console
+    // suppressPreamble: true, // Remove the XML preamble
+    // viewBox: {
+    //   x: 0,
+    //   y: 0,
+    //   width: width,
+    //   height: height
+    // }
+    // suppressWarnings: true // Suppress any Fabric.js warnings in the console
   });
-  const blob = new Blob([svgString], {type: "image/svg+xml"});
+  const blob = new Blob([svgString], {type: "image/svg"});
   const a = document.createElement("a");
   const url = URL.createObjectURL(blob);
   a.href = url;
@@ -209,33 +211,72 @@ export const downloadCanvasAsSVG = () => {
 };
 
 export const downloadCanvasAsJpeg = () => {
-  debugger;
   const {canvas} = window;
   if (!canvas) return;
-  const newCanvas = new fabric.StaticCanvas(null, {
-    width: canvas.width,
-    height: canvas.height
+  const {width, height} = canvas;
+
+  // const canvas = canvasRef.current;
+
+  // Create a new Fabric.js canvas instance if it doesn't exist
+  if (!canvas) {
+    return;
+  }
+
+  var canvasPromise = html2canvas(document.body, {
+    allowTaint: true,
+    foreignObjectRendering: true,
+    useCORS: true
+  });
+  canvasPromise.then(function (canvas) {
+    document.body.appendChild(canvas);
+    console.log(canvas);
+
+    canvas.toDataURL({format: "jpeg"});
   });
 
-  canvas.getObjects().forEach((obj) => {
-    // const clone = obj.clone();
-    const clone = cloneDeep(obj);
-    newCanvas.add(clone);
-  });
+  // Convert canvas to data URL with JPEG format
+  // const dataURL = canvas.toDataURL({
+  //   format: "jpeg",
+  //   quality: 0.8 // Adjust quality if needed
+  // });
 
+  // Create a temporary anchor element to trigger download
   const downloadLink = document.createElement("a");
-  const dataURL = canvas.toDataURL(
-    {
-      format: "jpeg", // or 'jpeg' as needed
-      quality: 1 // Image quality (0 to 1)
-    },
-    {crossOrigin: "anonymous"}
-  );
-  // Set the download link attributes
-  downloadLink.href = dataURL;
-  downloadLink.download = `design.jpeg`;
+  downloadLink.href = canvasPromise;
+  downloadLink.download = "canvas_image.jpg";
+  document.body.appendChild(downloadLink);
   downloadLink.click();
+  document.body.removeChild(downloadLink);
 };
+
+// export const downloadCanvasAsJpeg = () => {
+//   // debugger;
+//   const {canvas} = window;
+//   if (!canvas) return;
+//   const newCanvas = new fabric.StaticCanvas(null, {
+//     width: canvas.width,
+//     height: canvas.height
+//   });
+
+//   canvas.getObjects().forEach((obj) => {
+//     // const clone = obj.clone();
+//     const clone = cloneDeep(obj);
+//     newCanvas.add(clone);
+//   });
+
+//   const downloadLink = document.createElement("a");
+//   const dataURL = canvas.toDataURL(
+//     {
+//       format: "jpeg", // or 'jpeg' as needed
+//       quality: 1 // Image quality (0 to 1)
+//     },
+//     {crossOrigin: "anonymous"}
+//   );
+//   // Set the download link attributes
+//   downloadLink.href = dataURL;
+//   downloadLink.download = `design.jpeg`;
+//   downloadLink.click();
+// };
 
 export const object_types = {
   textbox: "Text",

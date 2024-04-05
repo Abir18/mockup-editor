@@ -1,10 +1,28 @@
 import {fabric} from "fabric";
-export const changeCanvasBackground = (url) => {
+export const changeCanvasBackground = (url, options = {}) => {
   const {canvas} = window;
+  // console.log(options, "options");
   if (!canvas) return;
   // const updatedUrl = `${url}?tr=h-${canvas.height},w-${canvas.width}`;
   const updatedUrl = url;
+
   fabric.Image.fromURL(updatedUrl, function (img) {
+    // img.scaleToHeight(300);
+    // img.scaleToWidth(300);
+    // img.scale(0.5).set({top: 50, left: 100});
+    // const clipPath = new fabric.Circle({
+    //   // top: 200,
+    //   // left: 250,
+    //   originY: "center",
+    //   originX: "center"
+    // });
+
+    img.set({
+      ...options
+    });
+    // canvas.add(img);
+    // canvas.clipPath = clipPath;
+
     const W = canvas.width;
     const H = canvas.height;
     const K = H / W;
@@ -22,7 +40,8 @@ export const changeCanvasBackground = (url) => {
         scaleY: canvas.height / h,
         scaleX: canvas.width / w,
         selectable: true,
-        movementX: true
+        movementX: true,
+        lockMovementX: false
         // lockMovementX: false,
         // lockMovementY: false,
         // lockRotation: false,
@@ -30,6 +49,13 @@ export const changeCanvasBackground = (url) => {
       },
       {crossOrigin: "anonymous"}
     );
+    // img.set({
+    //   left: 350,
+    //   top: 300,
+    //   scaleX: 0.2,
+    //   scaleY: 0.2,
+    //   selectable: true
+    // });
   });
 };
 

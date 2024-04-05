@@ -1,16 +1,16 @@
-import GradientGrid from "components/gradient-grid";
 import BackgroundLibraryPreview from "components/background-library-preview";
-import useBackgroundControl from "./useBackgroundControl";
+import GradientGrid from "components/gradient-grid";
 import {
-  mesh_gradients,
-  point_backgrounds,
   bluured_backgrounds,
-  dark_backgrounds,
-  comics_backgrounds,
   bubbles_backgrounds,
+  comics_backgrounds,
+  dark_backgrounds,
+  mesh_gradients,
+  point_backgrounds
 } from "enums";
+import useBackgroundControl from "./useBackgroundControl";
 const BackgroundControl = () => {
-  const { backgroundOption, addGradientToBg, grid, watermark } =
+  const {backgroundOption, addGradientToBg, grid, watermark} =
     useBackgroundControl();
   return (
     <>
@@ -109,9 +109,11 @@ const BackgroundControl = () => {
             <div className="gradient-position">
               {gradientPositions.map((item) => (
                 <div
-                  onClick={()=>watermark.changePosition(item.title)}
+                  onClick={() => watermark.changePosition(item.title)}
                   key={`Watermark Position ${item.title}`}
-                  className={`gradient-position-button ${item.title===watermark?.watermarkPosition ? "active":""}`}
+                  className={`gradient-position-button ${
+                    item.title === watermark?.watermarkPosition ? "active" : ""
+                  }`}
                 >
                   {item.icon}
                 </div>
@@ -120,7 +122,7 @@ const BackgroundControl = () => {
           </div>
         ) : null}
       </div> */}
-      {/* <div className="divider"/> */}
+      {/* <div className="divider" /> */}
     </>
   );
 };
@@ -170,7 +172,7 @@ const gradientPositions = [
         <line x1={5} y1={12} x2={19} y2={12} />
         <polyline points="12 5 19 12 12 19" />
       </svg>
-    ),
+    )
   },
   {
     title: "right-bottom",
@@ -191,7 +193,7 @@ const gradientPositions = [
         <line x1={7} y1={7} x2={17} y2={17} />
         <polyline points="17 7 17 17 7 17" />
       </svg>
-    ),
+    )
   },
   {
     title: "bottom",
@@ -212,7 +214,7 @@ const gradientPositions = [
         <line x1={12} y1={5} x2={12} y2={19} />
         <polyline points="19 12 12 19 5 12" />
       </svg>
-    ),
+    )
   },
   {
     title: "bottom-left",
@@ -233,7 +235,7 @@ const gradientPositions = [
         <line x1={17} y1={7} x2={7} y2={17} />
         <polyline points="17 17 7 17 7 7" />
       </svg>
-    ),
+    )
   },
   {
     title: "left",
@@ -254,7 +256,7 @@ const gradientPositions = [
         <line x1={19} y1={12} x2={5} y2={12} />
         <polyline points="12 19 5 12 12 5" />
       </svg>
-    ),
+    )
   },
   {
     title: "left-top",
@@ -275,7 +277,7 @@ const gradientPositions = [
         <line x1={17} y1={17} x2={7} y2={7} />
         <polyline points="7 17 7 7 17 7" />
       </svg>
-    ),
+    )
   },
   {
     title: "top",
@@ -296,7 +298,7 @@ const gradientPositions = [
         <line x1={12} y1={19} x2={12} y2={5} />
         <polyline points="5 12 12 5 19 12" />
       </svg>
-    ),
+    )
   },
   {
     title: "left-right",
@@ -317,6 +319,6 @@ const gradientPositions = [
         <line x1={7} y1={17} x2={17} y2={7} />
         <polyline points="7 7 17 7 17 17" />
       </svg>
-    ),
-  },
+    )
+  }
 ];

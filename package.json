@@ -20,6 +20,7 @@
     "fabric-guideline-plugin": "^0.0.11",
     "fabric-pen-tool": "^1.1.1",
     "fontfaceobserver": "^2.3.0",
+    "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "pexels": "^1.4.0",

@@ -1,18 +1,36 @@
-import { generateGradientCss } from "utils";
-import { gradients } from "enums";
-import { useDispatch } from "react-redux";
-import { toggleLibraryPanel } from "store/reducers/libraryMenuSlice";
-const GradientGrid = ({ onClick = () => {} }) => {
+import {changeCanvasBackground} from "canvas-actions";
+import Button from "components/button";
+import ColorPicker from "components/color-picker";
+import {gradients} from "enums";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {toggleLibraryPanel} from "store/reducers/libraryMenuSlice";
+import {generateGradientCss} from "utils";
+
+const GradientGrid = ({onClick = () => {}}) => {
+  const activeObjectType = useSelector((state) => state.activeObject);
+
+  const {type, id: objectId} = activeObjectType;
   const dispatch = useDispatch();
+
+  const [color, setColor] = useState("#ffffff");
+
+  const {canvas} = window;
+  // useEffect(() => {}, [canvas, color]);
+
+  const activeObject = canvas?.getActiveObject();
+
   const handleLibraryOpen = () => {
     dispatch(
       toggleLibraryPanel({
         show: true,
         panelTitle: "Library",
-        subChild: "Gradient",
+        subChild: "Gradient"
       })
     );
   };
+
+  const [toggle, setToggle] = useState(false);
   return (
     <>
       <div className="divider" />
@@ -24,14 +42,41 @@ const GradientGrid = ({ onClick = () => {} }) => {
           {gradients.map((grad) => (
             <div
               onClick={() => onClick(grad.colors)}
-              style={{ background: generateGradientCss(grad) }}
+              style={{background: generateGradientCss(grad)}}
               key={`Background Control Gradient ${grad.title}`}
               className="gradient gradient-div"
             />
           ))}
         </div>
       </div>
+
       <div className="divider" />
+      <div className="text-controls">
+        <div className="d-flex justify-content-between align-center">
+          <p className="controls-heading">Color</p>
+        </div>
+        <ColorPicker
+          activeObject={activeObject}
+          objectKey="background"
+          objectId={objectId}
+        />
+      </div>
+      <div className="divider" />
+      <div style={{margin: "20px 15px"}}>
+        <Button
+          title="Remove Background"
+          type="outline"
+          onClick={() => {
+            if (!canvas) return;
+            setColor(color);
+            canvas.set({
+              backgroundColor: color,
+              backgroundImage: null
+            });
+            changeCanvasBackground("");
+          }}
+        ></Button>
+      </div>
     </>
   );
 };
