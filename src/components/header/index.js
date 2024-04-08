@@ -1,4 +1,4 @@
-import {downloadCanvasAsJpeg, downloadCanvasAsSVG} from "canvas-actions";
+import {downloadCanvasAsJpeg, downloadTopLayerAsSVG} from "canvas-actions";
 import Button from "components/button";
 import QuickActionContainer from "components/quick-action-container";
 import ThemeSwitcher from "components/theme-switcher";
@@ -20,7 +20,7 @@ const Header = () => {
         </div>
         <div className="d-flex gap-1">
           <Button
-            onClick={downloadCanvasAsSVG}
+            onClick={downloadTopLayerAsSVG}
             title="Download SVG"
             type="outline"
           />

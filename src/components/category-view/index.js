@@ -1,5 +1,5 @@
 import mockupLogo from "assets/img/download.svg";
-import {addImageOnCanvas, changeCanvasBackground} from "canvas-actions";
+import {addBackgroundImageOnCanvas, addImageOnCanvas} from "canvas-actions";
 import Button from "components/button";
 import {useEffect, useState} from "react";
 import AppIcon from "utils/app-icon";
@@ -54,9 +54,16 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
     setImage(mockupData[query]);
 
     addImageOnCanvas(mockupData.thumbnail, {selectable: true});
-    changeCanvasBackground(image, {selectable: true});
+    // addImageOnCanvas(image, {selectable: true});
+    // changeCanvasBackground(image, {selectable: true});
 
-    // addBackgroundImageOnCanvas(mockupData[query]);
+    addBackgroundImageOnCanvas(image, {selectable: true});
+
+    // console.log(mockupData.thumbnail, "thu");
+
+    // mockupData.thumbnail.paths.forEach(function (path) {
+    //   path.fill = "red";
+    // });
     // canvas.renderAll();
 
     // Load mockup image
@@ -86,6 +93,21 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
     //   // canvas.renderAll();
     // });
 
+    // fabric.loadSVGFromString(mockupData.thumbnail, function (objects, options) {
+    //   var svgImage = fabric.util.groupSVGElements(objects, options);
+    //   svgImage.set({
+    //     height: 300,
+    //     width: 300
+    //     // left: 350,
+    //     // top: 300,
+    //     // scaleX: 0.2,
+    //     // scaleY: 0.2,
+    //     // selectable: true
+    //   });
+    //   canvas.add(svgImage);
+    //   canvas.renderAll();
+    // });
+
     // Clean up
     // return () => {
     //   canvas.dispose();
@@ -96,13 +118,16 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
   return (
     <>
       <div className="divider" />
+
       <div
         style={{margin: "10px 0px", padding: "0px 20px"}}
         onClick={() => {
           setToggle(!toggle);
           // console.log(toggle, "toggle");
 
-          toggle ? changeCanvasBackground(image) : changeCanvasBackground("");
+          toggle
+            ? addBackgroundImageOnCanvas(image)
+            : addBackgroundImageOnCanvas("");
         }}
       >
         <Button title="Show/Hide Mockup" type="outline"></Button>

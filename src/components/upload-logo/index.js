@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const UploadMockup = ({onClick = () => {}}) => {
+const UploadLogo = ({onClick = () => {}}) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [imageUrls, setImageUrls] = useState([]);
 
@@ -30,28 +30,25 @@ const UploadMockup = ({onClick = () => {}}) => {
   return (
     <div>
       <div>
-        <div>
-          <label
-            htmlFor="mockup"
-            className="btn"
-            style={{
-              border: "1px solid black",
-              margin: "10px 20px",
-              fontSize: "13px"
-            }}
-          >
-            Upload Mockup
-          </label>
+        <label
+          htmlFor="logo"
+          className="btn"
+          style={{
+            border: "1px solid black",
+            margin: "10px 20px",
+            fontSize: "13px"
+          }}
+        >
+          Upload Logo
+        </label>
 
-          <input
-            id="mockup"
-            style={{visibility: "hidden"}}
-            type="file"
-            accept=".svg, .png, .jpg"
-            multiple
-            onChange={handleFileChange}
-          />
-        </div>
+        <input
+          id="logo"
+          style={{visibility: "hidden"}}
+          type="file"
+          accept=".svg, .png, .jpg"
+          onChange={handleFileChange}
+        />
       </div>
       <div className="category-container">
         {selectedFiles.length > 0 && (
@@ -77,9 +74,10 @@ const UploadMockup = ({onClick = () => {}}) => {
           </div>
         )}
       </div>
+
       <div className="divider" />
     </div>
   );
 };
 
-export default UploadMockup;
+export default UploadLogo;

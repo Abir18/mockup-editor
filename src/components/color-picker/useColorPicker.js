@@ -18,6 +18,7 @@ import {fabric} from "fabric";
 import {cloneDeep} from "lodash";
 import {useCallback, useEffect, useState} from "react";
 import useEyeDropper from "use-eye-dropper";
+
 const useColorPicker = (activeObject, objectKey) => {
   const {canvas} = window;
   // const activeObject = canvas?.getActiveObject();
@@ -56,6 +57,13 @@ const useColorPicker = (activeObject, objectKey) => {
   ]);
   //   Eye Dropper
   const {open, close, isSupported} = useEyeDropper();
+
+  const getDocumentColor = () => {
+    if (!canvas) return;
+    let object = canvas?._objects.map((obj) => obj.fill);
+    setDocumentColors(object);
+  };
+
   useEffect(() => {
     getDocumentColor();
   }, []);
@@ -85,58 +93,83 @@ const useColorPicker = (activeObject, objectKey) => {
     setGradient(cloneDeep(colorStops));
     setIsGrad(true);
   };
-  const handleChangeColor = (color) => {
-    const colorInHex = hsvaToHex(color);
-    const colorInRgba = hsvaToRgbaString(color);
-    setHsva(color);
-    setHex(colorInHex);
-    getDocumentColor();
-    canvasChange(colorInRgba);
-  };
-  const getDocumentColor = () => {
-    if (!canvas) return;
-    let object = canvas?._objects.map((obj) => obj.fill);
-    setDocumentColors(object);
-  };
-  const pickColor = useCallback(() => {
-    // Using async/await (can be used as a promise as-well)
-    const openPicker = async () => {
-      try {
-        const color = await open();
-        setHsva(hexToHsva(color.sRGBHex));
-        setHex(color.sRGBHex);
-        canvasChange(color.sRGBHex);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    openPicker();
-  }, [open]);
 
   const canvasChange = (color) => {
+    console.log(color, "color");
     if (objectKey === "background") {
       canvas.set({backgroundColor: color, backgroundImage: null});
     }
     if (objectKey === "image") {
-      // console.log("image null");
-      canvas.set({
-        // backgroundColor: color,
-        fill: color
-        // backgroundImage: null
-      });
-      // activeObject.color = color;
+      console.log("objectKey", objectKey);
+      // canvas.set({fill: color, backgroundImage: color});
     }
     if (activeObject) {
       if (objectKey === "shadow") {
         activeObject.shadow.color = color;
       } else if (objectKey === "image") {
-        // console.log("image null");
-        activeObject.backgroundColor = color;
-        activeObject.color = color;
-        activeObject.fill = color;
+        console.log("activeObject", activeObject);
+
+        // const svg = canvas.toSVG();
+        // console.log("svg", svg);
+
+        // const coloredSVG = svg.replace("<image", '<image fill="red"');
+        // console.log("coloredSVG", coloredSVG);
+
+        // activeObject.backgroundColor = color;
+
+        // activeObject.push(
+        //   new fabric.Image.filters({
+        //     color: color
+        //   })
+        // );
+        // activeObject.applyFilters();
+        // canvas.renderAll();
+
+        // activeObject.color = "rgba(245, 40, 145, 0.8)";
+        // activeObject.fill = "rgba(245, 40, 145, 0.8)";
+
         if (activeObject && activeObject.type === "image") {
-          // console.log(activeObject._objects, "fill");
-          activeObject.color = "rgba(255,255,255,0.7)";
+          console.log("Executed");
+
+          activeObject.filters = [
+            new fabric.Image.filters.Tint({color: "#FF0000"})
+          ]; // Change color to red
+          activeObject.applyFilters();
+          canvas.requestRenderAll();
+
+          // if (activeObject && activeObject.canvas._objects) {
+          //   for (var i = 0; i < activeObject.canvas._objects.length; i++) {
+          //     activeObject.canvas._objects[i].set({
+          //       fill: color
+          //     });
+          //   }
+          // }
+          // console.log(activeObject, "activeObject");
+          // console.log(activeObject.canvas._objects[0].fill, "1st");
+
+          // console.log(activeObject._objects[1].fill, "2st");
+          // activeObject.paths.forEach(function (path) {
+          //   path.fill = color;
+          // });
+          // activeObject.canvas._objects[0].fill = color;
+          // activeObject.canvas._objects[1].fill = color;
+          // activeObject.setAttribute("fill", "blue");
+          // var obj = this.canvas.itemObj;
+          // var color = '#ff00ff';
+
+          // if (activeObject.canvas.item._objects) {
+          //   for (var i = 0; i < obj._objects.length; i++) {
+          //     obj._objects[i].set({
+          //       fill: color
+          //     });
+          //   }
+          // }
+
+          // console.log(activeObject, "activeObject");
+          // console.log(activeObject.canvas._objects[0].color, "fill");
+          // activeObject.canvas._objects[0].color = "rgba(245, 40, 145, 0.8)";
+          // activeObject.canvas._objects[0].fill = "rgba(245, 40, 145, 0.8)";
+          // activeObject.color = "rgba(255,255,255,0.7)";
           // activeObject.paths.forEach(function (path) {
           //   path.fill = color;
           // });
@@ -165,6 +198,30 @@ const useColorPicker = (activeObject, objectKey) => {
     }
     canvas.renderAll();
   };
+
+  const handleChangeColor = (color) => {
+    const colorInHex = hsvaToHex(color);
+    const colorInRgba = hsvaToRgbaString(color);
+    setHsva(color);
+    setHex(colorInHex);
+    getDocumentColor();
+    canvasChange(colorInRgba);
+  };
+
+  const pickColor = useCallback(() => {
+    // Using async/await (can be used as a promise as-well)
+    const openPicker = async () => {
+      try {
+        const color = await open();
+        setHsva(hexToHsva(color.sRGBHex));
+        setHex(color.sRGBHex);
+        canvasChange(color.sRGBHex);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    openPicker();
+  }, [open, canvasChange]);
 
   const handleRandomColor = () => {
     const color = generateRandomHexColor();
