@@ -181,6 +181,117 @@ export const downloadCanvas = async (format, quality = "Normal") => {
   downloadLink.click();
 };
 
+// Function to download active object as SVG
+export const downloadActiveObjectAsSVG = () => {
+  const {canvas} = window;
+
+  const activeObject = canvas.getActiveObject();
+
+  if (activeObject) {
+    // const svgString = encodeURIComponent(activeObject.toSVG());
+    const svgString = activeObject.toSVG();
+    // Sanitize the SVG string
+    const sanitizedSVGString = svgString.replace(
+      /&(amp|lt|gt);/g,
+      (match, entity) => {
+        const entities = {
+          amp: "&",
+          lt: "<",
+          gt: ">"
+        };
+        return entities[entity];
+      }
+    );
+
+    console.log("SVG String:", svgString);
+    // console.log("Sanitized SVG String:", sanitizedSVGString);
+
+    const blob = new Blob([sanitizedSVGString], {type: "image/svg+xml"});
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "active_object.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  } else {
+    console.log("No active object selected.");
+  }
+};
+
+// export const downloadActiveObjectAsSVG = () => {
+//   const {canvas} = window;
+//   const activeObject = canvas.getActiveObject();
+
+//   if (activeObject) {
+//     const svgString = encodeURIComponent(activeObject.toSVG());
+//     const blob = new Blob([svgString], {type: "image/svg+xml"});
+//     const url = URL.createObjectURL(blob);
+
+//     const link = document.createElement("a");
+//     link.href = url;
+//     link.download = "active_object.svg";
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+
+//     URL.revokeObjectURL(url);
+//   } else {
+//     console.log("No active object selected.");
+//   }
+// };
+
+// export const downloadActiveObjectAsSVG = () => {
+//   const {canvas} = window;
+//   const activeObject = canvas.getActiveObject();
+
+//   if (activeObject) {
+//     const svgString = activeObject.toSVG();
+//     const dataURL = "data:image/svg+xml," + encodeURIComponent(svgString);
+
+//     const link = document.createElement("a");
+//     link.href = dataURL;
+//     link.download = "active_object.svg";
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+//   } else {
+//     console.log("No active object selected.");
+//   }
+// };
+
+// Function to download active object as SVG
+// export const downloadActiveObjectAsSVG = () => {
+//   const {canvas} = window;
+//   const activeObject = canvas.getActiveObject();
+
+//   if (activeObject) {
+//     const svgString = encodeURIComponent(activeObject.toSVG());
+//     const svgArray = new Uint8Array(svgString.length);
+//     for (let i = 0; i < svgString.length; i++) {
+//       svgArray[i] = svgString.charCodeAt(i);
+//     }
+//     const svgBlob = new Blob([svgArray], {type: "image/svg+xml"});
+//     const url = URL.createObjectURL(svgBlob);
+
+//     const link = document.createElement("a");
+//     link.href = url;
+//     link.download = "active_object.svg";
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+
+//     URL.revokeObjectURL(url);
+//   } else {
+//     console.log("No active object selected.");
+//   }
+// };
+
+// =============================================
+
 export const downloadCanvasAsSVG = () => {
   const {canvas} = window;
   if (!canvas) return;

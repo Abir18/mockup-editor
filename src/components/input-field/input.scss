@@ -2,45 +2,47 @@
 @import "../../assets/css/mixins.scss";
 
 .input-field-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
 
-    .icon-pending {
-        padding-left: 2rem;
-    }
+  .icon-pending {
+    padding-left: 2rem;
+  }
 }
 
 .input-icon {
-    background-color: transparent;
-    border-right: 2px solid $border-color;
-    position: absolute;
-    left: 7px;
+  background-color: transparent;
+  border-right: 2px solid $border-color;
+  position: absolute;
+  left: 7px;
 }
 
 .input-field {
-    border: 1px solid $border-color;
-    border-radius: 0.3rem;
-    padding: 0.35rem 0.75rem;
-    font-size: .75rem;
-    line-height: 1rem;
-    border-width: 1px;
-    transition-property: background-color, border-color, color, fill, stroke;
-    transition-timing-function: linear;
-    transition-duration: .3s;
-    appearance: none;
-    outline: none;
-    background-color: $background-color;
-    resize: none;
+  border: 1px solid $border-color;
+  border-radius: 0.3rem;
+  padding: 0.35rem 0.75rem;
 
-    @include whenDark {
-        border: 1px solid $dark-border-color;
-        background-color: $background-color-dark-light;
-        color:white;
-    }
+  font-size: 15px;
+  line-height: 1rem;
+  border-width: 1px;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: linear;
+  transition-duration: 0.3s;
+  appearance: none;
+  outline: none;
+  background-color: $background-color;
+  resize: none;
+
+  @include whenDark {
+    border: 1px solid $dark-border-color;
+    background-color: $background-color-dark-light;
+    color: white;
+  }
 }
 
 .input-field:focus {
-    border-color: $primary-color;
-    background-color: $primary-color-light;
+  border-color: $primary-color;
+  background-color: $primary-color-light;
 }

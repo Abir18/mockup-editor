@@ -1,4 +1,7 @@
-import {changeCanvasBackground} from "canvas-actions";
+import {
+  addBackgroundImageOnCanvas,
+  changeCanvasBackground
+} from "canvas-actions";
 import Button from "components/button";
 import ColorPicker from "components/color-picker";
 import {gradients} from "enums";
@@ -6,6 +9,7 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleLibraryPanel} from "store/reducers/libraryMenuSlice";
 import {generateGradientCss} from "utils";
+import defaultBackground from "../../assets/img/default-background-image.jpg";
 
 const GradientGrid = ({onClick = () => {}}) => {
   const activeObjectType = useSelector((state) => state.activeObject);
@@ -76,6 +80,14 @@ const GradientGrid = ({onClick = () => {}}) => {
             changeCanvasBackground("");
           }}
         ></Button>
+      </div>
+      <div
+        style={{margin: "20px 15px"}}
+        onClick={() => addBackgroundImageOnCanvas(defaultBackground)}
+      >
+        <h4 className="controls-heading">Select Background</h4>
+        {/* <Button type="outline" title="Transparent Back" /> */}
+        <img src={defaultBackground} height={80} width={80} alt="" />
       </div>
     </>
   );

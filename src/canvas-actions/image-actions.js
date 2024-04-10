@@ -157,9 +157,13 @@ export const addBackgroundImageOnCanvas = (
   options = {},
   watermark = false
 ) => {
+  console.log(options, "op");
   const {canvas} = window;
 
   if (!canvas) return;
+
+  // const activeObject = canvas.getActiveObject();
+  // console.log(activeObject, "activeObject");
 
   // canvas.clear();
 
@@ -176,6 +180,26 @@ export const addBackgroundImageOnCanvas = (
     // canvas.set({
     //   backgroundImage: img
     // });
+
+    if (options.selectable) {
+      // addBackgroundImageOnCanvas("");
+      // canvas.set({backgroundColor: "green"});
+      // canvas.set({backgroundImage: null});
+      // canvas.add(img);
+      // replaceImage(url);
+      img.set({
+        selectable: true
+      });
+      // return;
+    } else {
+      // canvas.set({backgroundColor: "red"});
+      img.set({
+        selectable: false
+      });
+      // return;
+
+      // canvas.set({backgroundImage: null});
+    }
 
     img.set({
       // scaleX: 0.01,
@@ -206,9 +230,7 @@ export const addBackgroundImageOnCanvas = (
     // canvas.add(img);
     // Add the image to the canvas
     // console.log(options, "op");
-    // if (options.selectable) {
-    //   canvas.add(img);
-    // }
+
     if (!watermark) {
       canvas.centerObject(img);
       canvas.setActiveObject(img);
@@ -219,8 +241,8 @@ export const addBackgroundImageOnCanvas = (
       });
       canvas.set({
         watermark: true,
-        watermarkPosition: "right-bottom",
-        backgroundImage: img
+        watermarkPosition: "right-bottom"
+        // backgroundImage: img
       });
     }
 

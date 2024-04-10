@@ -58,15 +58,47 @@ const useColorPicker = (activeObject, objectKey) => {
   //   Eye Dropper
   const {open, close, isSupported} = useEyeDropper();
 
-  const getDocumentColor = () => {
+  const getDocumentColor = useCallback(() => {
     if (!canvas) return;
     let object = canvas?._objects.map((obj) => obj.fill);
     setDocumentColors(object);
-  };
+  }, [canvas]);
+
+  const canvasChange = useCallback((color) => {
+    if (objectKey === "background") {
+      canvas.set({backgroundColor: color, backgroundImage: null});
+    }
+
+    if (activeObject) {
+      if (objectKey === "shadow") {
+        activeObject.shadow.color = color;
+      } else if (objectKey === "image") {
+        if (activeObject && activeObject.type === "image") {
+          activeObject.filters = [
+            new fabric.Image.filters.BlendColor({
+              color: color,
+              mode: "tint", // Apply tint mode
+              alpha: 1 // Alpha value for blending
+            })
+          ];
+          activeObject.applyFilters();
+          canvas.renderAll();
+        } else {
+          console.log("No active object selected or it is not an image.");
+        }
+      } else {
+        activeObject.set({
+          [objectKey]: color
+        });
+      }
+    }
+    canvas.renderAll();
+  }, []);
 
   useEffect(() => {
     getDocumentColor();
-  }, []);
+    // canvasChange();
+  }, [getDocumentColor]);
 
   const checkIsGrad = () => {
     let gradient = [];
@@ -92,111 +124,6 @@ const useColorPicker = (activeObject, objectKey) => {
     }));
     setGradient(cloneDeep(colorStops));
     setIsGrad(true);
-  };
-
-  const canvasChange = (color) => {
-    console.log(color, "color");
-    if (objectKey === "background") {
-      canvas.set({backgroundColor: color, backgroundImage: null});
-    }
-    if (objectKey === "image") {
-      console.log("objectKey", objectKey);
-      // canvas.set({fill: color, backgroundImage: color});
-    }
-    if (activeObject) {
-      if (objectKey === "shadow") {
-        activeObject.shadow.color = color;
-      } else if (objectKey === "image") {
-        console.log("activeObject", activeObject);
-
-        // const svg = canvas.toSVG();
-        // console.log("svg", svg);
-
-        // const coloredSVG = svg.replace("<image", '<image fill="red"');
-        // console.log("coloredSVG", coloredSVG);
-
-        // activeObject.backgroundColor = color;
-
-        // activeObject.push(
-        //   new fabric.Image.filters({
-        //     color: color
-        //   })
-        // );
-        // activeObject.applyFilters();
-        // canvas.renderAll();
-
-        // activeObject.color = "rgba(245, 40, 145, 0.8)";
-        // activeObject.fill = "rgba(245, 40, 145, 0.8)";
-
-        if (activeObject && activeObject.type === "image") {
-          console.log("Executed");
-
-          activeObject.filters = [
-            new fabric.Image.filters.Tint({color: "#FF0000"})
-          ]; // Change color to red
-          activeObject.applyFilters();
-          canvas.requestRenderAll();
-
-          // if (activeObject && activeObject.canvas._objects) {
-          //   for (var i = 0; i < activeObject.canvas._objects.length; i++) {
-          //     activeObject.canvas._objects[i].set({
-          //       fill: color
-          //     });
-          //   }
-          // }
-          // console.log(activeObject, "activeObject");
-          // console.log(activeObject.canvas._objects[0].fill, "1st");
-
-          // console.log(activeObject._objects[1].fill, "2st");
-          // activeObject.paths.forEach(function (path) {
-          //   path.fill = color;
-          // });
-          // activeObject.canvas._objects[0].fill = color;
-          // activeObject.canvas._objects[1].fill = color;
-          // activeObject.setAttribute("fill", "blue");
-          // var obj = this.canvas.itemObj;
-          // var color = '#ff00ff';
-
-          // if (activeObject.canvas.item._objects) {
-          //   for (var i = 0; i < obj._objects.length; i++) {
-          //     obj._objects[i].set({
-          //       fill: color
-          //     });
-          //   }
-          // }
-
-          // console.log(activeObject, "activeObject");
-          // console.log(activeObject.canvas._objects[0].color, "fill");
-          // activeObject.canvas._objects[0].color = "rgba(245, 40, 145, 0.8)";
-          // activeObject.canvas._objects[0].fill = "rgba(245, 40, 145, 0.8)";
-          // activeObject.color = "rgba(255,255,255,0.7)";
-          // activeObject.paths.forEach(function (path) {
-          //   path.fill = color;
-          // });
-          // activeObject.set("fill", color);
-          // activeObject.set({color: color});
-          // activeObject.filters = []; // Clear existing filters
-          // activeObject.applyFilters(); // Apply changes
-          // // Apply color overlay filter
-          // activeObject.filters.push(
-          //   new fabric.Image.filters.Tint({
-          //     color: color
-          //   })
-          // );
-          // activeObject.applyFilters();
-          // var filter = new fabric.Image.filters.Tint({
-          //   color: "#3513B0",
-          //   opacity: 0.5
-          // });
-          // activeObject.filters.push(filter);
-        }
-      } else {
-        activeObject.set({
-          [objectKey]: color
-        });
-      }
-    }
-    canvas.renderAll();
   };
 
   const handleChangeColor = (color) => {

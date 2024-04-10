@@ -23,10 +23,12 @@ const ZoomCanvas = () => {
         />
 
         <span
-          style={{position: "relative", top: -1, left: -65, fontSize: "14px"}}
+          className="input-field"
+          style={{position: "relative", left: -55, fontSize: "14px"}}
         >
           %
         </span>
+
         <div
           onClick={() => zoom.setZoom(zoom.value + 10)}
           className="action-button"

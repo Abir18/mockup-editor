@@ -7,10 +7,31 @@ import CategoryView from "components/category-view";
 import InputField from "components/input-field";
 import UploadLogo from "components/upload-logo";
 import UploadMockup from "components/upload-mockup";
+import {useState} from "react";
 
 const MockupLibrary = () => {
+  const [draggable, setDraggable] = useState(true);
+
+  const {canvas} = window;
+
+  const objects = canvas.getObjects();
+
+  // Find the bottom layer object
+  // const bottomLayer = objects.find((obj) => !obj.selectable);
+  const topObject = objects[objects.length - 1];
+
+  console.log(objects, "objects");
+  console.log(topObject, "topObject");
+
+  // useEffect(()=>{
+  //   addBackgroundImageOnCanvas(image, {selectable: draggable});
+
+  // },[])
+
   return (
     <>
+      {/* <button onClick={() => setDraggable(!draggable)}>Drag</button> */}
+
       <div className="library-inner-container">
         <InputField placeholder="Quick find" />
       </div>
