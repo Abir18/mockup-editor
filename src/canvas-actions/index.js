@@ -182,31 +182,29 @@ export const downloadCanvas = async (format, quality = "Normal") => {
 };
 
 // Function to download active object as SVG
+
 export const downloadActiveObjectAsSVG = () => {
   const {canvas} = window;
-
   const activeObject = canvas.getActiveObject();
 
   if (activeObject) {
-    // const svgString = encodeURIComponent(activeObject.toSVG());
     const svgString = activeObject.toSVG();
-    // Sanitize the SVG string
-    const sanitizedSVGString = svgString.replace(
-      /&(amp|lt|gt);/g,
-      (match, entity) => {
-        const entities = {
-          amp: "&",
-          lt: "<",
-          gt: ">"
-        };
-        return entities[entity];
-      }
+
+    // Replace xlink:href attributes with empty string to prevent external linking
+    const sanitizedSVGString = svgString.replace(/xlink:href="[^"]*"/g, "");
+    const sanitizedSVGString1 = svgString.replace(
+      /[\x00-\x08\x0B\x0C\x0E-\x1F]/g,
+      ""
     );
 
-    console.log("SVG String:", svgString);
-    // console.log("Sanitized SVG String:", sanitizedSVGString);
+    const tag = svgString.replace(/<g[^>]*>|<\/g>/g, "");
 
-    const blob = new Blob([sanitizedSVGString], {type: "image/svg+xml"});
+    console.log(sanitizedSVGString, "sanitizedSVGString");
+    console.log(tag, "tag");
+
+    const blob = new Blob([sanitizedSVGString, sanitizedSVGString1], {
+      type: "image/svg+xml"
+    });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
@@ -218,9 +216,49 @@ export const downloadActiveObjectAsSVG = () => {
 
     URL.revokeObjectURL(url);
   } else {
-    console.log("No active object selected.");
+    alert("No active object selected.");
   }
 };
+
+// export const downloadActiveObjectAsSVG = () => {
+//   const {canvas} = window;
+
+//   const activeObject = canvas.getActiveObject();
+
+//   if (activeObject) {
+//     // const svgString = encodeURIComponent(activeObject.toSVG());
+//     const svgString = activeObject.toSVG();
+//     // Sanitize the SVG string
+//     const sanitizedSVGString = svgString.replace(
+//       /&(amp|lt|gt);/g,
+//       (match, entity) => {
+//         const entities = {
+//           amp: "&",
+//           lt: "<",
+//           gt: ">"
+//         };
+//         return entities[entity];
+//       }
+//     );
+
+//     console.log("SVG String:", svgString);
+//     // console.log("Sanitized SVG String:", sanitizedSVGString);
+
+//     const blob = new Blob([sanitizedSVGString], {type: "image/svg+xml"});
+//     const url = URL.createObjectURL(blob);
+
+//     const link = document.createElement("a");
+//     link.href = url;
+//     link.download = "active_object.svg";
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+
+//     URL.revokeObjectURL(url);
+//   } else {
+//     console.log("No active object selected.");
+//   }
+// };
 
 // export const downloadActiveObjectAsSVG = () => {
 //   const {canvas} = window;

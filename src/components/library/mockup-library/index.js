@@ -1,8 +1,5 @@
-import {
-  addBackgroundImageOnCanvas,
-  changeCanvasBackground,
-  replaceTopLayerImage
-} from "canvas-actions";
+import {addBackgroundImageOnCanvas, replaceTopLayerImage} from "canvas-actions";
+import {changeCanvasBackground} from "canvas-actions/background-actions";
 import CategoryView from "components/category-view";
 import InputField from "components/input-field";
 import UploadLogo from "components/upload-logo";

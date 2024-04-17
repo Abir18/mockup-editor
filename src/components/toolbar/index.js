@@ -54,10 +54,6 @@ const toolbar_items = [
     icon: "icon-star-outline"
   },
   {
-    title: "Images",
-    icon: "icon-image"
-  },
-  {
     title: "Layer",
     icon: "icon-layers"
   }

@@ -9,7 +9,9 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleLibraryPanel} from "store/reducers/libraryMenuSlice";
 import {generateGradientCss} from "utils";
+import blackBackground from "../../assets/img/black-blackground.jpg";
 import defaultBackground from "../../assets/img/default-background-image.jpg";
+import whiteBackground from "../../assets/img/white_background.jpg";
 
 const GradientGrid = ({onClick = () => {}}) => {
   const activeObjectType = useSelector((state) => state.activeObject);
@@ -81,13 +83,36 @@ const GradientGrid = ({onClick = () => {}}) => {
           }}
         ></Button>
       </div>
+      <div style={{margin: "10px 15px"}}>
+        <h4 className="controls-heading">Select Background</h4>
+      </div>
       <div
-        style={{margin: "20px 15px"}}
+        style={{margin: "10px 15px", maxWidth: "60px", cursor: "pointer"}}
         onClick={() => addBackgroundImageOnCanvas(defaultBackground)}
       >
-        <h4 className="controls-heading">Select Background</h4>
         {/* <Button type="outline" title="Transparent Back" /> */}
-        <img src={defaultBackground} height={80} width={80} alt="" />
+        <img src={defaultBackground} height={60} width={60} alt="" />
+      </div>
+      <div
+        style={{margin: "10px 15px", maxWidth: "60px", cursor: "pointer"}}
+        onClick={() => addBackgroundImageOnCanvas(blackBackground)}
+      >
+        {/* <Button type="outline" title="Transparent Back" /> */}
+
+        <img src={blackBackground} height={60} width={60} alt="" />
+      </div>
+      <div
+        style={{
+          margin: "10px 15px",
+          border: "1px solid black",
+          maxWidth: "60px",
+          cursor: "pointer"
+        }}
+        onClick={() => addBackgroundImageOnCanvas(whiteBackground)}
+      >
+        {/* <Button type="outline" title="Transparent Back" /> */}
+
+        <img src={whiteBackground} height={60} width={60} alt="" />
       </div>
     </>
   );
