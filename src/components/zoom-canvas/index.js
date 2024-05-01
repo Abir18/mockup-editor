@@ -6,10 +6,7 @@ const ZoomCanvas = () => {
   return (
     <>
       <div className="zoom-action-container">
-        <div
-          onClick={() => zoom.setZoom(zoom.value - 10)}
-          className="action-button"
-        >
+        <div onClick={zoom.zoomOut} className="action-button">
           <AppIcon iconName="icon-minus" classes="w-3 h-3" />
         </div>
 
@@ -29,10 +26,7 @@ const ZoomCanvas = () => {
           %
         </span>
 
-        <div
-          onClick={() => zoom.setZoom(zoom.value + 10)}
-          className="action-button"
-        >
+        <div onClick={zoom.zoomIn} className="action-button">
           <AppIcon iconName="icon-plus" classes="w-3 h-3" />
         </div>
       </div>

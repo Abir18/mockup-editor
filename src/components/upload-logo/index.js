@@ -16,15 +16,25 @@ const UploadLogo = ({onClick = () => {}}) => {
           fileType === "image/png" ||
           fileType === "image/jpeg"
         ) {
+          console.log(file, "file");
+          console.log(urls, "urls");
+
           setSelectedFiles((prevFiles) => [...prevFiles, file]);
           const url = URL.createObjectURL(file);
           urls.push(url);
+          console.log(url, "url");
+          console.log(imageUrls[url], "imageUrls[url]");
+          const {canvas} = window;
+          canvas.add(url);
         } else {
           alert(`File ${file.name} is not a valid SVG, PNG, or JPG file.`);
         }
       }
     }
+    console.log(imageUrls, "imageUrls");
     setImageUrls((prevUrls) => [...prevUrls, ...urls]);
+    const {canvas} = window;
+    // canvas.add(imageUrls[0]);
   };
 
   return (

@@ -1,5 +1,5 @@
-import "./input.scss";
 import AppIcon from "utils/app-icon";
+import "./input.scss";
 const InputField = ({
   placeholder,
   onChange,
@@ -12,7 +12,7 @@ const InputField = ({
   min,
   max,
   onBlur,
-  step,
+  step
 }) => {
   let extraProps = {};
   if (type === "number") {
@@ -63,7 +63,7 @@ InputField.defaultProps = {
   value: "",
   containerClass: "",
   min: 0,
-  max: 200,
-  step: 1,
+  max: 200000,
+  step: 1
 };
 export default InputField;

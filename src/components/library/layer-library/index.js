@@ -2,6 +2,7 @@ import img1 from "assets/layer/hiars.png";
 import img2 from "assets/layer/mockup.png";
 import img3 from "assets/layer/shades.png";
 import img4 from "assets/layer/shades2.png";
+import Button from "components/button";
 import {fabric} from "fabric";
 
 const LayerLibrary = () => {
@@ -17,7 +18,9 @@ const LayerLibrary = () => {
           });
         }}
       >
-        <img src={img1} alt="layer" width={80} />
+        <div style={{margin: "10px 30px"}}>
+          <Button title="Layer 1" type="outline"></Button>
+        </div>
       </div>
       <div
         onClick={() => {
@@ -29,7 +32,9 @@ const LayerLibrary = () => {
           });
         }}
       >
-        <img src={img2} alt="layeri" width={80} />
+        <div style={{margin: "10px 30px"}}>
+          <Button title="Layer 2" type="outline"></Button>
+        </div>
       </div>
       <div
         onClick={() => {
@@ -41,7 +46,9 @@ const LayerLibrary = () => {
           });
         }}
       >
-        <img src={img3} alt="layeri" width={80} />
+        <div style={{margin: "10px 30px"}}>
+          <Button title="Layer 3" type="outline"></Button>
+        </div>
       </div>
       <div
         onClick={() => {
@@ -53,7 +60,9 @@ const LayerLibrary = () => {
           });
         }}
       >
-        <img src={img4} alt="layeri" width={80} />
+        <div style={{margin: "10px 30px"}}>
+          <Button title="Layer 4" type="outline"></Button>
+        </div>
       </div>
     </>
   );

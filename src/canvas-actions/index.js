@@ -24,6 +24,8 @@ export const canvasInit = (callBack = () => {}) => {
       width: canvasWidth,
       height: canvasHeight,
       backgroundColor: "white",
+      selection: true,
+      selectionKey: "ctrlKey",
       borderColor: "rgba(23, 207, 51, 0.776)",
       selectionColor: "rgba(40, 123, 239, 0.25)",
       // selectionBorderColor: "rgba(40, 123, 239, 0.65)",

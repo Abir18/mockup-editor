@@ -1,6 +1,7 @@
 import mockupLogo from "assets/img/download.svg";
 import {addBackgroundImageOnCanvas, addImageOnCanvas} from "canvas-actions";
 import Button from "components/button";
+import {fabric} from "fabric";
 import {useEffect, useState} from "react";
 import AppIcon from "utils/app-icon";
 
@@ -26,10 +27,12 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
   const [toggle, setToggle] = useState(false);
 
   const [isDragging, setIsDragging] = useState(false);
+  const [prevX, setPrevX] = useState(0);
+  const [prevY, setPrevY] = useState(0);
+
+  const {canvas} = window;
 
   useEffect(() => {
-    const {canvas} = window;
-
     if (!canvas) return;
 
     canvas.getContext("2d");
@@ -51,53 +54,52 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
 
     setImage(mockupData[query]);
 
-    addImageOnCanvas(mockupData.thumbnail, {selectable: true});
-    // addImageOnCanvas(image, {selectable: true});
+    addImageOnCanvas(mockupData.thumbnail);
+    // replaceImage(mockupData.thumbnail, {selectable: true});
     // changeCanvasBackground(image, {selectable: true});
 
     addBackgroundImageOnCanvas(image);
-  }, [mockupData]);
+  }, [mockupData, setImage]);
 
   const toggleDragging = () => {
     setIsDragging(!isDragging);
   };
 
   useEffect(() => {
-    if (!isDragging) return;
-
     let {canvas} = window;
 
-    // Enable dragging canvas
-    // canvas.isDragging = false;
+    if (canvas) {
+      canvas.selection = !isDragging; // Enable or disable object selection based on drag status
+    }
+  }, [isDragging]);
+
+  useEffect(() => {
+    if (!isDragging) return;
+
     canvas.on("mouse:down", function (options) {
       if (isDragging) {
+        setIsDragging(true);
         const pointer = canvas.getPointer(options.e);
-        canvas.lastPosX = pointer.x;
-        canvas.lastPosY = pointer.y;
+        setPrevX(pointer.x);
+        setPrevY(pointer.y);
         canvas.isDragging = true;
       }
     });
 
     canvas.on("mouse:move", function (options) {
-      if (!isDragging) {
-        canvas.isDragging = false;
-      }
       if (isDragging && canvas.isDragging) {
         const pointer = canvas.getPointer(options.e);
-        const deltaX = pointer.x - canvas.lastPosX;
-        const deltaY = pointer.y - canvas.lastPosY;
-        canvas.viewportTransform[4] += deltaX;
-        canvas.viewportTransform[5] += deltaY;
-        canvas.requestRenderAll();
-        canvas.lastPosX = pointer.x;
-        canvas.lastPosY = pointer.y;
+        const deltaX = pointer.x - 500;
+        const deltaY = pointer.y;
+        canvas.relativePan(new fabric.Point(deltaX, deltaY));
+        setPrevX(pointer.x);
+        setPrevY(pointer.y);
       }
     });
 
     canvas.on("mouse:up", function () {
-      // setIsDragging(!isDragging);
+      // setIsDragging(false);
       canvas.isDragging = false;
-      // canvas.selection = isDragging;
     });
 
     return () => {
@@ -106,7 +108,60 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
       canvas.off("mouse:move");
       canvas.off("mouse:up");
     };
-  }, [isDragging]);
+  }, [isDragging, canvas]);
+
+  useEffect(() => {
+    // Prevent right-click context menu on the canvas
+    const preventContextMenu = (event) => {
+      event.preventDefault();
+    };
+
+    const canvasElement = document.getElementById("canvas-wrapper");
+
+    canvasElement.addEventListener("contextmenu", preventContextMenu);
+
+    // Cleanup: Remove event listener when component unmounts
+    return () => {
+      // canvas.dispose();
+      canvasElement.removeEventListener("contextmenu", preventContextMenu);
+    };
+  }, [canvas]);
+
+  useEffect(() => {
+    // Enable multiple selection with Ctrl key
+    canvas.on("mouse:down", function (options) {
+      if (options.e.ctrlKey) {
+        const pointer = canvas.getPointer(options.e);
+        canvas.selection = true; // Enable selection
+        canvas.forEachObject((obj) => {
+          if (obj.containsPoint(pointer)) {
+            obj.set("active", true); // Set object as active
+          }
+        });
+        canvas.requestRenderAll();
+      }
+    });
+
+    // canvas.on("mouse:down", function (options) {
+    //   console.log(options.e.ctrlKey, "options");
+    //   if (options.e.ctrlKey) {
+    //     const pointer = canvas.getPointer(options.e);
+    //     const objects = canvas.getObjects();
+    //     for (let i = 0; i < objects.length; i++) {
+    //       if (objects[i].containsPoint(pointer)) {
+    //         objects[i].set("active", true);
+    //         canvas.requestRenderAll();
+    //         break;
+    //       }
+    //     }
+    //   }
+    // });
+
+    // Cleanup: Dispose of the canvas when the component unmounts
+    return () => {
+      // canvas.dispose();
+    };
+  }, [canvas]);
 
   return (
     <>

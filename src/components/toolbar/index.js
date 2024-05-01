@@ -56,6 +56,9 @@ const toolbar_items = [
   {
     title: "Layer",
     icon: "icon-layers"
+  },
+  {
+    title: "Show/Hide Mockup"
   }
 ];
 
