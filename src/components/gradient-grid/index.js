@@ -1,7 +1,4 @@
-import {
-  addBackgroundImageOnCanvas,
-  changeCanvasBackground
-} from "canvas-actions";
+import {changeCanvasBackground} from "canvas-actions";
 import Button from "components/button";
 import ColorPicker from "components/color-picker";
 import {gradients} from "enums";
@@ -9,9 +6,6 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {toggleLibraryPanel} from "store/reducers/libraryMenuSlice";
 import {generateGradientCss} from "utils";
-import blackBackground from "../../assets/img/black-blackground.jpg";
-import defaultBackground from "../../assets/img/default-background-image.jpg";
-import whiteBackground from "../../assets/img/white_background.jpg";
 
 const GradientGrid = ({onClick = () => {}}) => {
   const activeObjectType = useSelector((state) => state.activeObject);
@@ -83,21 +77,19 @@ const GradientGrid = ({onClick = () => {}}) => {
           }}
         ></Button>
       </div>
-      <div style={{margin: "10px 15px"}}>
+      {/* <div style={{margin: "10px 15px"}}>
         <h4 className="controls-heading">Select Background</h4>
       </div>
       <div
         style={{margin: "10px 15px", maxWidth: "60px", cursor: "pointer"}}
         onClick={() => addBackgroundImageOnCanvas(defaultBackground)}
       >
-        {/* <Button type="outline" title="Transparent Back" /> */}
         <img src={defaultBackground} height={60} width={60} alt="" />
       </div>
       <div
         style={{margin: "10px 15px", maxWidth: "60px", cursor: "pointer"}}
         onClick={() => addBackgroundImageOnCanvas(blackBackground)}
       >
-        {/* <Button type="outline" title="Transparent Back" /> */}
 
         <img src={blackBackground} height={60} width={60} alt="" />
       </div>
@@ -110,10 +102,9 @@ const GradientGrid = ({onClick = () => {}}) => {
         }}
         onClick={() => addBackgroundImageOnCanvas(whiteBackground)}
       >
-        {/* <Button type="outline" title="Transparent Back" /> */}
 
         <img src={whiteBackground} height={60} width={60} alt="" />
-      </div>
+      </div> */}
     </>
   );
 };

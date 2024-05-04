@@ -58,7 +58,13 @@ const toolbar_items = [
     icon: "icon-layers"
   },
   {
-    title: "Show/Hide Mockup"
+    title: "ShowHideMockup"
+  },
+  {
+    title: "UploadLogo"
+  },
+  {
+    title: "UploadMockup"
   }
 ];
 

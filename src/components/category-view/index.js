@@ -1,6 +1,5 @@
 import mockupLogo from "assets/img/download.svg";
 import {addBackgroundImageOnCanvas, addImageOnCanvas} from "canvas-actions";
-import Button from "components/button";
 import {fabric} from "fabric";
 import {useEffect, useState} from "react";
 import AppIcon from "utils/app-icon";
@@ -24,7 +23,6 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
 
   const [mockupData, setMockupData] = useState(response);
   const [image, setImage] = useState(response.bag);
-  const [toggle, setToggle] = useState(false);
 
   const [isDragging, setIsDragging] = useState(false);
   const [prevX, setPrevX] = useState(0);
@@ -184,22 +182,6 @@ const CategoryView = ({data = [], onClick = () => {}, type = "shape"}) => {
         {isDragging ? "Drag Off" : "Drag"}
       </button>
 
-      <div
-        style={{
-          margin: "10px 0px",
-          padding: "0px 20px"
-        }}
-        onClick={() => {
-          setToggle(!toggle);
-          // console.log(toggle, "toggle");
-
-          toggle
-            ? addBackgroundImageOnCanvas(image)
-            : addBackgroundImageOnCanvas("");
-        }}
-      >
-        <Button title="Show/Hide Mockup" type="outline"></Button>
-      </div>
       {detailedView !== null ? (
         <>
           <div className="library-inner-container  overfloy-y-container">

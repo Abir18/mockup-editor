@@ -4,7 +4,6 @@ const useZoomCanvas = () => {
   const [zoom, setZoom] = useState(100);
   const [zoomLevel, setZoomLevel] = useState(1);
   useEffect(() => {
-    console.log(canvas, "canvas");
     canvas.on("zoomToFit", () => {
       handleChangeZoom(100);
     });

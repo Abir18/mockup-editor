@@ -157,7 +157,6 @@ export const addBackgroundImageOnCanvas = (
   options = {},
   watermark = false
 ) => {
-  console.log(options, "op");
   const {canvas} = window;
 
   if (!canvas) return;

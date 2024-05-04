@@ -9,6 +9,15 @@ const LibraryContainer = () => {
   const LazyGeneralLibrary = React.lazy(() => import("./general-libraries"));
   const LazyMockupLibrary = React.lazy(() => import("./mockup-library"));
   const LazyLayerLibrary = React.lazy(() => import("./layer-library"));
+  const LazyShowHideMockupLibrary = React.lazy(() =>
+    import("./show-hide-mockup-library")
+  );
+  const LazyUploadLogoLibrary = React.lazy(() =>
+    import("./upload-logo-library")
+  );
+  const LazyUploadMockupLibrary = React.lazy(() =>
+    import("./upload-mockup-library")
+  );
   const activeModule = {
     Mockup: (
       <Suspense fallback={<LibraryLoader />}>
@@ -33,6 +42,21 @@ const LibraryContainer = () => {
     Layer: (
       <Suspense fallback={<LibraryLoader />}>
         <LazyLayerLibrary />
+      </Suspense>
+    ),
+    ShowHideMockup: (
+      <Suspense fallback={<LibraryLoader />}>
+        <LazyShowHideMockupLibrary />
+      </Suspense>
+    ),
+    UploadLogo: (
+      <Suspense fallback={<LibraryLoader />}>
+        <LazyUploadLogoLibrary />
+      </Suspense>
+    ),
+    UploadMockup: (
+      <Suspense fallback={<LibraryLoader />}>
+        <LazyUploadMockupLibrary />
       </Suspense>
     ),
     Library: (
